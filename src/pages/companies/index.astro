@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteMeta } from '../../data/siteMeta';
+
+const title = `Verified Companies | ${siteMeta.businessName}`;
+const description = `Companies Thread Bridge has independently verified — factories, suppliers, and buyer-side partners active in Bangladesh's garment and textile industry.`;
+
+const companies = (await getCollection('companies')).sort(
+  (a, b) => new Date(b.data.lastCheckedDate).getTime() - new Date(a.data.lastCheckedDate).getTime()
+);
+
+const statusIcon: Record<string, string> = {
+  verified: '✅',
+  pending: '⏳',
+  flagged: '🚩',
+  could_not_verify: '❌',
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <section style="padding: 80px 0;">
+    <div class="container" style="max-width: 900px;">
+      <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 16px;">Verified Companies</h1>
+      <p style="margin-bottom: 40px;">
+        Every company below has been checked by Thread Bridge against government
+        registries, industry associations, or on-the-ground factory visits.
+      </p>
+
+      <div style="display: grid; gap: 16px;">
+        {companies.map(entry => {
+          const c = entry.data;
+          const name = c.displayName || c.legalName;
+          const slug = entry.id.replace(/\.mdx?$/, '');
+          return (
+            <a href={`/companies/${slug}`} style="display:block; padding:20px; border:1px solid var(--border-color); border-radius:10px; text-decoration:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
+                <div>
+                  <div style="color: var(--text-primary); font-weight:600;">{name}</div>
+                  <div style="color: var(--text-secondary); font-size:0.9rem;">{c.country} · {c.role} · {c.category}</div>
+                </div>
+                <div style="white-space:nowrap;">{statusIcon[c.status]}</div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

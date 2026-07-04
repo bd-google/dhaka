@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteMeta } from '../data/siteMeta';
+
+const title = "Contact Us | ThreadBridge BD";
+const description = "Get a quote for factory verification, sourcing, or local representation in Bangladesh. We respond within 24 hours.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="container" style="padding-top: 80px;">
+    <div class="grid grid-2-tablet" style="gap: 80px;">
+      <div>
+        <h1 style="font-size: 3rem; margin-bottom: 24px;">Let's talk about your project.</h1>
+        <p style="font-size: 1.2rem; color: var(--text-primary); margin-bottom: 40px;">Whether you are a startup brand or a global textile mill, we have the local expertise you need.</p>
+
+        <div style="margin-bottom: 40px;">
+          <h2 style="font-size: 1.25rem; margin-bottom: 16px;">Office Location</h2>
+          <p>{siteMeta.contact.address}<br />Dhaka, Bangladesh</p>
+        </div>
+
+        <div style="margin-bottom: 40px;">
+          <h2 style="font-size: 1.25rem; margin-bottom: 16px;">Direct Contact</h2>
+          <p style="margin-bottom: 8px;"><a href={`mailto:${siteMeta.contact.email}`} style="font-size: 1.1rem; font-weight: 600;">{siteMeta.contact.email}</a></p>
+          <p><a href={`tel:${siteMeta.contact.phone}`} style="font-size: 1.1rem; font-weight: 600;">{siteMeta.contact.phone}</a></p>
+        </div>
+
+        <div>
+          <h2 style="font-size: 1.25rem; margin-bottom: 16px;">Response Time</h2>
+          <p>We aim to respond to all inquiries within 24 hours (Sunday to Thursday).</p>
+        </div>
+      </div>
+
+      <div style="background-color: var(--card-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--border-color);">
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms Configuration - User to provide access key -->
+          <input type="hidden" name="access_key" value="" />
+          <input type="hidden" name="subject" value="New Inquiry from ThreadBridge BD" />
+          <input type="checkbox" name="botcheck" style="display: none;" />
+
+          <div style="margin-bottom: 24px;">
+            <label for="name" style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">Full Name</label>
+            <input type="text" id="name" name="name" required style="width: 100%; padding: 12px; background-color: #0A0A0A; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-family: inherit;" />
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <label for="email" style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">Work Email</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 12px; background-color: #0A0A0A; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-family: inherit;" />
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <label for="type" style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">I am a:</label>
+            <select id="type" name="user_type" required style="width: 100%; padding: 12px; background-color: #0A0A0A; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-family: inherit;">
+              <option value="buyer">Clothing Brand / Buyer</option>
+              <option value="supplier">Textile / Machinery Supplier</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <label for="message" style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: var(--text-primary);">Message</label>
+            <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 12px; background-color: #0A0A0A; border: 1px solid var(--border-color); border-radius: 8px; color: white; font-family: inherit; resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; border: none; font-size: 1rem;">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

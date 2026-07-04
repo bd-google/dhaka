@@ -1,0 +1,167 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Schema from '../../components/Schema.astro';
+
+export async function getStaticPaths() {
+  const companies = await getCollection('companies');
+  return companies.map(entry => ({
+    params: { slug: entry.id.replace(/\.mdx?$/, '') },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const c = entry.data;
+
+const statusLabel: Record<string, string> = {
+  verified: 'Verified',
+  pending: 'Pending further check',
+  flagged: 'Flagged',
+  could_not_verify: 'Could Not Verify',
+};
+
+const statusIcon: Record<string, string> = {
+  verified: '✅',
+  pending: '⏳',
+  flagged: '🚩',
+  could_not_verify: '❌',
+};
+
+const name = c.displayName || c.legalName;
+const dateStr = new Date(c.lastCheckedDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// --- Templated title/meta/H1 pattern — same shape for every company,
+// but every value plugged in is company-specific data, not boilerplate text.
+const title = `Verify ${name} legal information from Thread Bridge`;
+const description = `Thread Bridge checked ${name}'s registration and legal status on ${dateStr}. Status: ${statusLabel[c.status]}.`;
+const h1 = `${name} — Legal & Registration Verification`;
+
+// Incomplete/unverified entries stay out of the index automatically.
+const noindex = c.noindex || c.status !== 'verified';
+
+const breadcrumbs = [
+  { name: 'Home', url: new URL('/', Astro.site).toString() },
+  { name: 'Verified Companies', url: new URL('/companies', Astro.site).toString() },
+  { name, url: Astro.url.toString() },
+];
+
+// Association/regulatory rows — only rendered if present on this entry.
+const associationRows = [
+  c.bgmea && { label: 'BGMEA membership', value: `${c.bgmea.status}${c.bgmea.memberNumber ? ` (${c.bgmea.memberNumber})` : ''}` },
+  c.bkmea && { label: 'BKMEA membership', value: c.bkmea.status },
+  c.bepza && c.bepza.status !== 'not_applicable' && { label: 'BEPZA (EPZ) registration', value: `${c.bepza.status}${c.bepza.zone ? ` — ${c.bepza.zone}` : ''}` },
+  c.dife && { label: 'DIFE (fire/building safety)', value: c.dife.status },
+  c.rsc && { label: 'RMG Sustainability Council', value: c.rsc.status },
+  c.bida && c.bida.status !== 'not_applicable' && { label: 'BIDA registration', value: c.bida.status },
+].filter(Boolean) as { label: string; value: string }[];
+---
+
+<BaseLayout title={title} description={description} noindex={noindex}>
+  <Schema slot="schema" type="BreadcrumbList" data={breadcrumbs} />
+  <Schema slot="schema" type="LocalBusiness" data={{
+    name,
+    description,
+    address: c.visibility.showRegisteredAddress ? { "@type": "PostalAddress", "streetAddress": c.registeredAddress } : undefined,
+  }} />
+
+  <article class="container" style="padding-top: 60px; padding-bottom: 80px; max-width: 900px;">
+    <header style="margin-bottom: 40px;">
+      <span class="badge" style="display:inline-block; font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--accent-color); margin-bottom:12px; letter-spacing:0.05em;">
+        {c.role} · {c.category}
+      </span>
+      <h1 style="font-size: clamp(1.8rem, 5vw, 2.5rem); margin-bottom: 12px;">{h1}</h1>
+      <p style="font-size: 1.1rem; color: var(--text-primary);">
+        {statusIcon[c.status]} Status: <strong>{statusLabel[c.status]}</strong> · Last checked {dateStr}
+      </p>
+      {noindex && (
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 8px;">
+          This entry is not yet fully verified and is not indexed by search engines until it is.
+        </p>
+      )}
+    </header>
+
+    <!-- Verification Snapshot: unique structured facts, not boilerplate -->
+    <section style="background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; margin-bottom: 40px;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 20px;">Verification Snapshot</h2>
+      <dl style="display: grid; grid-template-columns: 1fr; gap: 12px;">
+        <div><strong>Legal name:</strong> {c.legalName}</div>
+        <div><strong>Country:</strong> {c.country}</div>
+        {c.tradeLicenseNumber && <div><strong>Trade license no.:</strong> {c.tradeLicenseNumber}</div>}
+        {c.binNumber && <div><strong>BIN:</strong> {c.binNumber}</div>}
+        {c.rjscNumber && <div><strong>RJSC no.:</strong> {c.rjscNumber}</div>}
+        {c.homeCountryRegNumber && <div><strong>Home registry no.:</strong> {c.homeCountryRegNumber}</div>}
+        {c.visibility.showRegisteredAddress && c.registeredAddress && <div><strong>Registered address:</strong> {c.registeredAddress}</div>}
+        {c.visibility.showFactoryAddress && c.factoryAddress && <div><strong>Factory address:</strong> {c.factoryAddress}</div>}
+        {c.visibility.showWebsite && c.website && <div><strong>Website:</strong> <a href={c.website} target="_blank" rel="noopener noreferrer nofollow">{c.website}</a></div>}
+        {c.visibility.showAuthorizedPerson && c.authorizedPersonName && (
+          <div><strong>Authorized contact:</strong> {c.authorizedPersonName}{c.authorizedPersonTitle && `, ${c.authorizedPersonTitle}`}</div>
+        )}
+        {c.visibility.showEmail && c.email && <div><strong>Email:</strong> {c.email}</div>}
+        {c.visibility.showPhone && c.phone && <div><strong>Phone:</strong> {c.phone}</div>}
+      </dl>
+
+      {associationRows.length > 0 && (
+        <>
+          <h3 style="font-size: 1.05rem; margin-top: 24px; margin-bottom: 12px;">Industry associations & regulatory bodies</h3>
+          <dl style="display: grid; gap: 10px;">
+            {associationRows.map(row => (
+              <div><strong>{row.label}:</strong> {row.value}</div>
+            ))}
+          </dl>
+        </>
+      )}
+
+      {c.complianceCerts && c.complianceCerts.length > 0 && (
+        <>
+          <h3 style="font-size: 1.05rem; margin-top: 24px; margin-bottom: 12px;">Compliance certifications</h3>
+          <ul style="list-style: none;">
+            {c.complianceCerts.map(cert => (
+              <li style="margin-bottom: 6px;">{cert.name}{cert.validTill ? ` — valid till ${cert.validTill}` : ''}</li>
+            ))}
+          </ul>
+        </>
+      )}
+    </section>
+
+    <!-- Summary: unique narrative, written per company -->
+    <section style="margin-bottom: 40px;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">Summary</h2>
+      <p>{c.summary}</p>
+      {c.findings && c.findings.length > 0 && (
+        <ul style="margin-top: 12px;">
+          {c.findings.map(f => <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position:absolute; left:0; color: var(--accent-color);">•</span>{f}</li>)}
+        </ul>
+      )}
+    </section>
+
+    <!-- Sources: mix of primary + third-party/government/association -->
+    <section style="margin-bottom: 40px;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">Verification sources</h2>
+      <ul style="list-style: none;">
+        {c.verificationSources.map(src => (
+          <li style="margin-bottom: 8px;">
+            <strong>{src.name}</strong> <span style="color: var(--text-secondary); font-size: 0.85rem;">({src.type.replace('_', ' ')})</span>
+            {src.reference && <span style="color: var(--text-secondary);"> — {src.reference}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- How we verify: templated methodology, safe to reuse across pages -->
+    <section style="border-top: 1px solid var(--border-color); padding-top: 30px;">
+      <h2 style="font-size: 1.25rem; margin-bottom: 12px;">How we verify</h2>
+      <p>
+        Thread Bridge cross-checks a company's registration and legal status against
+        relevant government registries, industry association records, and — where
+        applicable — on-the-ground factory visits and reference checks in Bangladesh.
+        Entries are re-checked periodically and updated when new information becomes
+        available.
+      </p>
+    </section>
+
+    <div style="margin-top: 40px;">
+      <a href="/contact" class="btn btn-primary">Ask us about this company</a>
+    </div>
+  </article>
+</BaseLayout>

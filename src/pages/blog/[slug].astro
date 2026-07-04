@@ -1,0 +1,131 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Schema from '../../components/Schema.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => {
+    // Slug is basically the file path relative to src/content/blog
+    // We want the URL to be /blog/the-slug
+    // entry.id might look like 'clusters/factory-verification/pillar.md'
+    // Let's create a clean slug from the filename if it's not the pillar,
+    // or from the folder name if it is the pillar.
+
+    let slug = entry.id.split('/').pop()?.replace('.md', '');
+    if (slug === 'pillar') {
+      slug = entry.id.split('/')[1]; // use the cluster name
+    }
+
+    return {
+      params: { slug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Find related posts in the same cluster
+const allBlogPosts = await getCollection('blog');
+const relatedPosts = allBlogPosts.filter(p => p.data.cluster === entry.data.cluster && p.id !== entry.id);
+
+const breadcrumbs = [
+  { name: 'Home', url: new URL('/', Astro.site).toString() },
+  { name: 'Blog', url: new URL('/blog', Astro.site).toString() },
+  { name: entry.data.title, url: Astro.url.toString() }
+];
+---
+
+<BaseLayout title={`${entry.data.title} | ThreadBridge BD Blog`} description={entry.data.description}>
+  <Schema slot="schema" type="BreadcrumbList" data={breadcrumbs} />
+  {entry.data.faq && <Schema slot="schema" type="FAQ" data={entry.data.faq} />}
+
+  <article class="container" style="padding-top: 60px; max-width: 800px;">
+    <header style="margin-bottom: 40px; text-align: center;">
+      <div style="margin-bottom: 16px;">
+        <span class="badge" style="display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-color); letter-spacing: 0.05em; border: 1px solid var(--accent-color); padding: 4px 12px; border-radius: 20px;">
+          {entry.data.cluster.replace('-', ' ')}
+        </span>
+      </div>
+      <h1 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 24px;">{entry.data.title}</h1>
+
+      <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 30px;">
+        <div style="width: 48px; height: 48px; border-radius: 50%; background-color: #262626; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--accent-color); border: 2px solid var(--border-color);">
+          {entry.data.author.name.charAt(0)}
+        </div>
+        <div style="text-align: left;">
+          <p style="margin: 0; color: var(--text-primary); font-weight: 600; font-size: 0.95rem;">
+            <a href={entry.data.author.experienceUrl} target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">{entry.data.author.name}</a>
+          </p>
+          <p style="margin: 0; font-size: 0.8rem; color: var(--text-secondary);">{entry.data.publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="prose" style="margin-top: 60px;">
+      <Content />
+    </div>
+
+    <footer style="margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border-color);">
+      <div style="background-color: var(--card-bg); padding: 30px; border-radius: 12px; display: flex; gap: 20px; align-items: flex-start;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background-color: #262626; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">
+           {entry.data.author.name.charAt(0)}
+        </div>
+        <div>
+          <h3 style="margin-bottom: 8px; font-size: 1.1rem;">About {entry.data.author.name}</h3>
+          <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 0;">{entry.data.author.bio}</p>
+        </div>
+      </div>
+
+      {relatedPosts.length > 0 && (
+        <section style="margin-top: 60px;">
+          <h2 style="font-size: 1.5rem; margin-bottom: 24px;">Related in this cluster</h2>
+          <div class="grid grid-2-tablet">
+            {relatedPosts.map(post => {
+              let postSlug = post.id.split('/').pop()?.replace('.md', '');
+              if (postSlug === 'pillar') postSlug = post.id.split('/')[1];
+
+              return (
+                <a href={`/blog/${postSlug}`} style="display: block; padding: 20px; background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; text-decoration: none; transition: border-color 0.2s ease;">
+                  <h3 style="font-size: 1rem; margin-bottom: 8px; color: var(--text-primary);">{post.data.title}</h3>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0;">{post.data.description.substring(0, 100)}...</p>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+    </footer>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .prose h3 {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+  }
+  .prose p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+  }
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .prose li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+  }
+  .prose strong {
+    color: var(--text-primary);
+  }
+
+  article a:hover {
+    border-color: var(--accent-color) !important;
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteMeta } from '../data/siteMeta';
+
+const title = `How It Works | ${siteMeta.businessName}`;
+const description = `A step-by-step look at how ${siteMeta.businessName} works with foreign buyers and foreign suppliers active in Bangladesh's garment and textile market.`;
+
+const steps = [
+  {
+    title: 'Tell us what you need',
+    body: '[Placeholder] A short call or form — are you a buyer needing factory verification/order monitoring, or a supplier trying to reach Bangladeshi factories?',
+  },
+  {
+    title: 'We scope the work',
+    body: '[Placeholder] We confirm the specific service, timeline, and what "done" looks like before anything starts.',
+  },
+  {
+    title: 'We work the ground',
+    body: '[Placeholder] Factory visits, document checks, introductions, sample coordination — whatever the service requires, done in-country.',
+  },
+  {
+    title: 'You get a clear report',
+    body: '[Placeholder] Findings, photos/evidence, and a plain-language recommendation — no jargon, no padding.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section style="padding: 80px 0;">
+    <div class="container" style="max-width: 800px;">
+      <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 24px;">How It Works</h1>
+      <p>[Placeholder intro — one paragraph setting up the process below.]</p>
+
+      <div style="margin-top: 40px;">
+        {steps.map((step, i) => (
+          <div style="display: flex; gap: 20px; margin-bottom: 32px;">
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-color); min-width: 40px;">{i + 1}</div>
+            <div>
+              <h2 style="font-size: 1.2rem; margin-bottom: 8px;">{step.title}</h2>
+              <p>{step.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top: 20px;">
+        <a href="/contact" class="btn btn-primary">Start a conversation</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

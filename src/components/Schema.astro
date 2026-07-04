@@ -1,0 +1,52 @@
+---
+interface Props {
+  type: 'LocalBusiness' | 'Service' | 'FAQ' | 'BreadcrumbList';
+  data: any;
+}
+
+const { type, data } = Astro.props;
+
+let schema: any = {
+  "@context": "https://schema.org",
+};
+
+if (type === 'LocalBusiness') {
+  schema = {
+    ...schema,
+    "@type": "LocalBusiness",
+    ...data
+  };
+} else if (type === 'Service') {
+  schema = {
+    ...schema,
+    "@type": "Service",
+    ...data
+  };
+} else if (type === 'FAQ') {
+  schema = {
+    ...schema,
+    "@type": "FAQPage",
+    "mainEntity": data.map((item: any) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+} else if (type === 'BreadcrumbList') {
+  schema = {
+    ...schema,
+    "@type": "BreadcrumbList",
+    "itemListElement": data.map((item: any, index: number) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

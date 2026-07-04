@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { siteMeta } from '../data/siteMeta';
+
+// PLACEHOLDER PAGE — slug/name/content to be finalized later.
+// Note: src/content.config.ts already defines a `caseStudies` collection
+// with no entries yet. This page reads from it so it's ready the moment
+// real case studies are added under src/content/caseStudies/.
+const title = `Case Studies | ${siteMeta.businessName}`;
+const description = `Real examples of how ${siteMeta.businessName} has helped buyers and suppliers working with Bangladesh's garment and textile industry.`;
+
+const caseStudies = await getCollection('caseStudies');
+---
+
+<BaseLayout title={title} description={description}>
+  <section style="padding: 80px 0;">
+    <div class="container" style="max-width: 800px;">
+      <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 24px;">Case Studies</h1>
+
+      {caseStudies.length === 0 ? (
+        <p>[Placeholder — no case studies added yet. Add .md files under src/content/caseStudies/ once you have real examples.]</p>
+      ) : (
+        <div class="grid">
+          {caseStudies.map(cs => (
+            <div style="padding: 20px; border: 1px solid var(--border-color); border-radius: 8px;">
+              <h2 style="font-size: 1.2rem;">{cs.data.title}</h2>
+              <p>{cs.data.description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

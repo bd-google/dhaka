@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteMeta } from '../data/siteMeta';
+
+const title = `About ${siteMeta.businessName} | Textile & Garment Supply Chain Advisory`;
+const description = `${siteMeta.businessName} is an independent advisory run by people who have spent 15+ years inside Bangladesh's garment and textile industry, in merchandising, sourcing, production, and quality roles.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <section style="padding: 80px 0;">
+    <div class="container" style="max-width: 800px;">
+      <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 24px;">About {siteMeta.businessName}</h1>
+
+      <p>
+        [Placeholder — replace with the real founder story.]
+        {siteMeta.businessName} was built on 15+ years of hands-on experience inside Bangladesh's
+        garment and textile industry — merchandising, sourcing, production, and quality control.
+        We've sat on both sides of the table: inside factories dealing with foreign buyers, and
+        helping foreign suppliers understand how the Bangladeshi market actually works.
+      </p>
+
+      <h2 style="font-size: 1.5rem; margin-top: 40px;">Why we exist</h2>
+      <p>
+        [Placeholder — 2-3 sentences on the gap this business fills: independent, on-the-ground
+        verification and coordination that neither buyers nor suppliers can easily get from
+        overseas.]
+      </p>
+
+      <h2 style="font-size: 1.5rem; margin-top: 40px;">Who we work with</h2>
+      <p>
+        [Placeholder — short paragraph pointing to the two paths: foreign buyers sourcing from
+        Bangladesh, and foreign suppliers (fabric, machinery, accessories) selling into the
+        Bangladeshi market.]
+      </p>
+
+      <div style="margin-top: 40px;">
+        <a href="/contact" class="btn btn-primary">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

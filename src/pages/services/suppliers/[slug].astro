@@ -1,0 +1,91 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Schema from '../../../components/Schema.astro';
+
+export async function getStaticPaths() {
+  const supplierServices = await getCollection('services', ({ data }) => {
+    return data.type === 'supplier';
+  });
+  return supplierServices.map(entry => {
+    const slug = entry.id.split('/').pop()?.split('.')[0] || entry.id;
+    return {
+      params: { slug },
+      props: { entry },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const breadcrumbs = [
+  { name: 'Home', url: new URL('/', Astro.site).toString() },
+  { name: 'Supplier Services', url: new URL('/#services', Astro.site).toString() },
+  { name: entry.data.title, url: Astro.url.toString() }
+];
+---
+
+<BaseLayout title={`${entry.data.title} | ThreadBridge BD`} description={entry.data.description}>
+  <Schema slot="schema" type="BreadcrumbList" data={breadcrumbs} />
+  <Schema slot="schema" type="Service" data={{
+    name: entry.data.title,
+    description: entry.data.description,
+    provider: {
+      "@type": "LocalBusiness",
+      "name": "ThreadBridge BD"
+    }
+  }} />
+  {entry.data.faq && <Schema slot="schema" type="FAQ" data={entry.data.faq} />}
+
+  <article class="container" style="padding-top: 60px;">
+    <header style="margin-bottom: 40px;">
+      <span class="badge" style="display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent-color); margin-bottom: 12px; letter-spacing: 0.05em;">Supplier Service</span>
+      <h1 style="font-size: 2.5rem; margin-bottom: 20px; max-width: 20ch;">{entry.data.title}</h1>
+      <p style="font-size: 1.2rem; color: var(--text-primary); max-width: 60ch;">{entry.data.problemStatement}</p>
+    </header>
+
+    <div class="grid grid-2-tablet" style="gap: 60px; align-items: start;">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <aside style="background-color: var(--card-bg); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color);">
+        <h2 style="font-size: 1.25rem; margin-bottom: 20px;">What we provide:</h2>
+        <ul style="list-style: none; margin-bottom: 30px;">
+          {entry.data.bullets.map(bullet => (
+            <li style="margin-bottom: 12px; padding-left: 24px; position: relative; color: var(--text-secondary); font-size: 0.95rem;">
+              <span style="position: absolute; left: 0; color: var(--accent-color);">✓</span>
+              {bullet}
+            </li>
+          ))}
+        </ul>
+        <a href="/contact" class="btn btn-primary" style="width: 100%;">Contact for details</a>
+      </aside>
+    </div>
+
+    {entry.data.faq && (
+      <section style="margin-top: 80px; border-top: 1px solid var(--border-color); padding-top: 60px;">
+        <h2 style="font-size: 1.75rem; margin-bottom: 40px;">Frequently Asked Questions</h2>
+        <div class="grid grid-2-tablet" style="gap: 40px;">
+          {entry.data.faq.map(item => (
+            <div>
+              <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary);">{item.question}</h3>
+              <p style="font-size: 0.95rem;">{item.answer}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .prose h3 {
+    margin-top: 2rem;
+    color: var(--text-primary);
+  }
+  .prose p {
+    margin-bottom: 1.25rem;
+  }
+</style>

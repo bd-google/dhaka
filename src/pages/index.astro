@@ -1,0 +1,171 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Schema from '../components/Schema.astro';
+import { siteMeta } from '../data/siteMeta';
+
+const buyerServices = await getCollection('services', ({ data }) => data.type === 'buyer');
+const supplierServices = await getCollection('services', ({ data }) => data.type === 'supplier');
+const factoryServices = await getCollection('services', ({ data }) => data.type === 'factory');
+
+// Limit to 6 for the homepage if needed, or show all. Brief says "Homepage: positioning statement + two paths"
+// and "Service cards: single column on mobile..." implies showing cards.
+
+const localBusinessData = {
+  "name": siteMeta.businessName,
+  "description": siteMeta.description,
+  "url": siteMeta.url,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Dhaka",
+    "addressCountry": "BD"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": siteMeta.contact.phone,
+    "contactType": "customer service"
+  }
+};
+---
+
+<BaseLayout>
+  <Schema slot="schema" type="LocalBusiness" data={localBusinessData} />
+
+  <!-- Hero Section -->
+  <section style="padding: 80px 0 100px; border-bottom: 1px solid var(--border-color);">
+    <div class="container" style="text-align: center;">
+      <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 24px; max-width: 20ch; margin-left: auto; margin-right: auto; line-height: 1.1;">
+        The bridge between global standards and Bangladesh production.
+      </h1>
+      <p style="font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--text-primary); margin-bottom: 40px; max-width: 35ch; margin-left: auto; margin-right: auto; line-height: 1.4;">
+        Independent factory verification for clothing brands, local representation for foreign textile suppliers, and buyer-facing support for Bangladeshi factories.
+      </p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="#buyers" class="btn btn-primary">I am a Clothing Buyer</a>
+        <a href="#suppliers" class="btn btn-secondary">I am a Textile Supplier</a>
+        <a href="#factories" class="btn btn-secondary">I am a Local Factory</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Buyer Path -->
+  <section id="buyers" style="padding: 100px 0; background-color: #0d0d0d;">
+    <div class="container">
+      <header style="margin-bottom: 60px;">
+        <span class="badge" style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">For Brands & Buyers</span>
+        <h2 style="font-size: 2.5rem; margin-top: 12px; margin-bottom: 20px;">Sourcing without the middleman risk.</h2>
+        <p style="max-width: 600px;">We help small to medium-sized clothing brands find, verify, and manage reliable factories in Bangladesh, specializing in low MOQs and ethical production.</p>
+      </header>
+
+      <div class="grid grid-2-tablet grid-3-desktop">
+        {buyerServices.slice(0, 6).map(service => (
+          <ServiceCard
+            type="Buyer"
+            title={service.data.title}
+            problemStatement={service.data.problemStatement}
+            bullets={service.data.bullets.slice(0, 3)}
+            href={`/services/buyers/${service.id.replace('buyers/', '')}`}
+          />
+        ))}
+      </div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <a href="/contact" class="btn btn-primary">Start Your Sourcing Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supplier Path -->
+  <section id="suppliers" style="padding: 100px 0; border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <header style="margin-bottom: 60px;">
+        <span class="badge" style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">For Textile & Machinery Suppliers</span>
+        <h2 style="font-size: 2.5rem; margin-top: 12px; margin-bottom: 20px;">Your local office in the world's fastest-growing market.</h2>
+        <p style="max-width: 600px;">Sell your fabric, yarn, or machinery directly to Bangladesh factories with our on-the-ground representation and liaison services.</p>
+      </header>
+
+      <div class="grid grid-2-tablet grid-3-desktop">
+        {supplierServices.slice(0, 6).map(service => (
+          <ServiceCard
+            type="Supplier"
+            title={service.data.title}
+            problemStatement={service.data.problemStatement}
+            bullets={service.data.bullets.slice(0, 3)}
+            href={`/services/suppliers/${service.id.replace('suppliers/', '')}`}
+          />
+        ))}
+      </div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <a href="/contact" class="btn btn-primary">Expand into Bangladesh</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Factory Path -->
+  <section id="factories" style="padding: 100px 0; background-color: #0d0d0d; border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <header style="margin-bottom: 60px;">
+        <span class="badge" style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">For Bangladeshi Factories & Suppliers</span>
+        <h2 style="font-size: 2.5rem; margin-top: 12px; margin-bottom: 20px;">Good product, invisible to the buyers who'd want it.</h2>
+        <p style="max-width: 600px;">100+ Bangladeshi factories closed in 2024 alone — usually not because of product quality, but because no one followed up in English, professionally, on time. We become that buyer-facing point of contact.</p>
+      </header>
+
+      <div class="grid grid-2-tablet grid-3-desktop">
+        {factoryServices.slice(0, 6).map(service => (
+          <ServiceCard
+            type="Factory"
+            title={service.data.title}
+            problemStatement={service.data.problemStatement}
+            bullets={service.data.bullets.slice(0, 3)}
+            href={`/services/factories/${service.id.replace('factories/', '')}`}
+          />
+        ))}
+      </div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <a href="/contact" class="btn btn-primary">Get Represented to Buyers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section style="padding: 100px 0; background-color: var(--card-bg); border-top: 1px solid var(--border-color);">
+    <div class="container grid grid-2-tablet" style="align-items: center; gap: 60px;">
+      <div>
+        <h2 style="font-size: 2.25rem; margin-bottom: 24px;">Why ThreadBridge BD?</h2>
+        <p style="font-size: 1.1rem; color: var(--text-primary);">Whoever hires us first, we work only for them on that deal — never both sides of the same transaction.</p>
+        <p>Sourcing agents who take fees from both the buyer and the factory create a built-in conflict of interest. We don't. On every engagement, you know exactly who's paying us and why, in writing, before work starts.</p>
+        <ul style="list-style: none; margin-top: 30px;">
+          <li style="margin-bottom: 16px; padding-left: 30px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold;">01</span>
+            <strong>Physical Verification</strong> — No desktop audits. We visit every factory in person.
+          </li>
+          <li style="margin-bottom: 16px; padding-left: 30px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold;">02</span>
+            <strong>Low MOQ Focus</strong> — We know the specialized units that accept 100-500 piece orders.
+          </li>
+          <li style="margin-bottom: 16px; padding-left: 30px; position: relative;">
+            <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold;">03</span>
+            <strong>Technical Expertise</strong> — We speak the language of patterns, yarns, and machinery.
+          </li>
+        </ul>
+      </div>
+      <div style="background-color: #0A0A0A; padding: 40px; border-radius: 12px; border: 1px solid var(--border-color);">
+        <h3 style="margin-bottom: 20px;">Latest from the Blog</h3>
+        <ul style="list-style: none;">
+          <li style="margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+            <a href="/blog/factory-verification" style="font-weight: 600; display: block; margin-bottom: 8px;">How to verify a garment factory in Bangladesh before paying</a>
+            <p style="font-size: 0.9rem; margin: 0;">Don't lose your deposit to a middleman. The exact steps to verify legitimacy.</p>
+          </li>
+          <li>
+            <a href="/blog/local-rep" style="font-weight: 600; display: block; margin-bottom: 8px;">How foreign fabric suppliers can find a local agent</a>
+            <p style="font-size: 0.9rem; margin: 0;">Why a physical presence in Dhaka is your strongest sales tool.</p>
+          </li>
+        </ul>
+        <a href="/blog" style="display: inline-block; margin-top: 20px; font-weight: 700;">View All Insights →</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,88 @@
+---
+interface Props {
+  type: 'Buyer' | 'Supplier';
+  title: string;
+  problemStatement: string;
+  bullets: string[];
+  href: string;
+}
+
+const { type, title, problemStatement, bullets, href } = Astro.props;
+---
+
+<div class="service-card">
+  <span class="badge">{type}</span>
+  <h3>{title}</h3>
+  <p class="problem">{problemStatement}</p>
+  <ul>
+    {bullets.map(bullet => <li>{bullet}</li>)}
+  </ul>
+  <div class="card-footer">
+    <a href={href} class="btn btn-secondary" style="width: 100%;">Contact for a quote</a>
+  </div>
+</div>
+
+<style>
+  .service-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: border-color 0.2s ease;
+  }
+
+  .service-card:hover {
+    border-color: var(--accent-color);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+
+  .problem {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+
+  ul li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  ul li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+  }
+
+  .card-footer {
+    margin-top: auto;
+  }
+</style>
