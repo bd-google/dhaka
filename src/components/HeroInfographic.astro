@@ -1,11 +1,11 @@
 ---
-// Problem-first hub-and-spoke infographic: a central "Thread Bridge" hex
-// hub with six pain-point pills radiating out (buyer problems on the left,
-// supplier problems on the right, mirroring the two-audience positioning
-// used through the rest of the site). Each pill is a real link straight to
-// the service page that solves that problem. Built from inline SVG icons +
-// flexbox connector stubs only — no absolute-positioned lines that could
-// drift out of alignment on resize, no raster images, no JS.
+// Problem-first hub-and-spoke infographic: a central "Thread Bridge" hub
+// with two flowing curved lines branching out — red toward three buyer
+// pain-points, green toward three supplier pain-points. The curves are
+// drawn with a small deferred vanilla-JS pass (measures real element
+// positions, builds a smooth SVG path) so they stay pixel-perfect at any
+// screen width; everything else (icons, pills) is static markup/CSS.
+// No frameworks, no images, script is deferred so it never blocks paint.
 const leftItems = [
   {
     href: '/services/buyers/factory-verification',
@@ -52,10 +52,27 @@ const icons: Record<string, string> = {
 };
 ---
 
-<div class="problem-hub">
+<div class="problem-hub" id="problem-hub">
   <p class="hub-eyebrow">Which of these sounds familiar?</p>
 
-  <div class="hub-diagram">
+  <div class="hub-diagram" id="hub-diagram">
+    <svg class="hub-curves" id="hub-curves" aria-hidden="true">
+      <defs>
+        <linearGradient id="curve-red" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="var(--accent-color)" stop-opacity="0.15" />
+          <stop offset="100%" stop-color="var(--accent-color)" stop-opacity="0.9" />
+        </linearGradient>
+        <linearGradient id="curve-green" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="var(--green-color)" stop-opacity="0.15" />
+          <stop offset="100%" stop-color="var(--green-color)" stop-opacity="0.9" />
+        </linearGradient>
+      </defs>
+      <path id="path-left" fill="none" stroke="url(#curve-red)" stroke-width="1.5" />
+      <path id="path-right" fill="none" stroke="url(#curve-green)" stroke-width="1.5" />
+      <g id="dots-left"></g>
+      <g id="dots-right"></g>
+    </svg>
+
     <div class="hub-col hub-col-left">
       {leftItems.map((item, i) => (
         <div class="hub-row" style={`--d: ${i * 0.08}s`}>
@@ -63,19 +80,19 @@ const icons: Record<string, string> = {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
             <span>{item.text}</span>
           </a>
-          <span class="hub-stub" aria-hidden="true"></span>
+          <span class="hub-anchor" data-side="left"></span>
         </div>
       ))}
     </div>
 
-    <div class="hub-core hub-anim hub-anim-core">
+    <div class="hub-core hub-anim hub-anim-core" id="hub-core">
       <span class="hub-core-label">Thread<br />Bridge</span>
     </div>
 
     <div class="hub-col hub-col-right">
       {rightItems.map((item, i) => (
         <div class="hub-row hub-row-reverse" style={`--d: ${i * 0.08}s`}>
-          <span class="hub-stub hub-stub-green" aria-hidden="true"></span>
+          <span class="hub-anchor" data-side="right"></span>
           <a href={item.href} class="hub-pill hub-pill-green hub-anim hub-anim-right">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
             <span>{item.text}</span>
@@ -90,6 +107,103 @@ const icons: Record<string, string> = {
     <span><i class="dot dot-green"></i> For Suppliers</span>
   </div>
 </div>
+
+<script>
+  // Draws two smooth curves (hub -> 3 buyer pills, hub -> 3 supplier pills)
+  // by measuring real DOM positions. Runs after load, on resize (debounced),
+  // and once more after fonts settle. No external deps, ~1KB of JS.
+  function buildSmoothPath(points: { x: number; y: number }[]): string {
+    if (points.length === 0) return '';
+    if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i];
+      const p1 = points[i + 1];
+      const midX = (p0.x + p1.x) / 2;
+      d += ` C ${midX} ${p0.y}, ${midX} ${p1.y}, ${p1.x} ${p1.y}`;
+    }
+    return d;
+  }
+
+  function drawDots(group: SVGGElement | null, points: { x: number; y: number }[], color: string) {
+    if (!group) return;
+    group.innerHTML = '';
+    points.forEach((p) => {
+      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', String(p.x));
+      c.setAttribute('cy', String(p.y));
+      c.setAttribute('r', '3');
+      c.setAttribute('fill', color);
+      group.appendChild(c);
+    });
+  }
+
+  function drawHubDiagram() {
+    const container = document.getElementById('hub-diagram');
+    const svg = document.getElementById('hub-curves') as SVGSVGElement | null;
+    const hub = document.getElementById('hub-core');
+    if (!container || !svg || !hub) return;
+
+    // Only draw the curved-line version above the mobile breakpoint —
+    // below it the CSS fallback (plain stacked list) takes over and the
+    // SVG is hidden, so skip the work entirely to save a few cycles.
+    if (window.innerWidth <= 760) {
+      svg.style.display = 'none';
+      return;
+    }
+    svg.style.display = 'block';
+
+    const containerRect = container.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${containerRect.width} ${containerRect.height}`);
+    svg.setAttribute('width', String(containerRect.width));
+    svg.setAttribute('height', String(containerRect.height));
+
+    const hubRect = hub.getBoundingClientRect();
+    const hubLeftAnchor = {
+      x: hubRect.left - containerRect.left,
+      y: hubRect.top - containerRect.top + hubRect.height / 2,
+    };
+    const hubRightAnchor = {
+      x: hubRect.right - containerRect.left,
+      y: hubRect.top - containerRect.top + hubRect.height / 2,
+    };
+
+    const leftAnchors = Array.from(container.querySelectorAll('.hub-anchor[data-side="left"]')) as HTMLElement[];
+    const rightAnchors = Array.from(container.querySelectorAll('.hub-anchor[data-side="right"]')) as HTMLElement[];
+
+    const leftPoints = leftAnchors.map((el) => {
+      const r = el.getBoundingClientRect();
+      return { x: r.left - containerRect.left, y: r.top - containerRect.top + r.height / 2 };
+    });
+    const rightPoints = rightAnchors.map((el) => {
+      const r = el.getBoundingClientRect();
+      return { x: r.left - containerRect.left, y: r.top - containerRect.top + r.height / 2 };
+    });
+
+    // Path order: hub -> topmost -> ... -> bottommost, so the curve reads
+    // top-to-bottom same as the pills.
+    const pathLeft = document.getElementById('path-left');
+    const pathRight = document.getElementById('path-right');
+    if (pathLeft) pathLeft.setAttribute('d', buildSmoothPath([hubLeftAnchor, ...leftPoints]));
+    if (pathRight) pathRight.setAttribute('d', buildSmoothPath([hubRightAnchor, ...rightPoints]));
+
+    drawDots(document.getElementById('dots-left') as SVGGElement | null, leftPoints, 'var(--accent-color)');
+    drawDots(document.getElementById('dots-right') as SVGGElement | null, rightPoints, 'var(--green-color)');
+  }
+
+  let resizeTimer: ReturnType<typeof setTimeout>;
+  function scheduleRedraw() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(drawHubDiagram, 100);
+  }
+
+  drawHubDiagram();
+  window.addEventListener('resize', scheduleRedraw);
+  window.addEventListener('load', drawHubDiagram);
+  if ((document as any).fonts && (document as any).fonts.ready) {
+    (document as any).fonts.ready.then(drawHubDiagram);
+  }
+</script>
 
 <style>
   .problem-hub {
@@ -108,13 +222,23 @@ const icons: Record<string, string> = {
   }
 
   .hub-diagram {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0;
   }
 
+  .hub-curves {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
   .hub-core {
+    position: relative;
+    z-index: 1;
     flex-shrink: 0;
     width: 130px;
     height: 130px;
@@ -124,7 +248,6 @@ const icons: Record<string, string> = {
     background: var(--card-bg);
     border: 1.5px solid var(--accent-color);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    z-index: 1;
     margin: 0 -1px;
   }
 
@@ -138,6 +261,8 @@ const icons: Record<string, string> = {
   }
 
   .hub-col {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -166,15 +291,12 @@ const icons: Record<string, string> = {
     justify-content: flex-start;
   }
 
-  .hub-stub {
-    flex-shrink: 0;
-    width: 28px;
+  /* Zero-size marker the JS measures to know exactly where each curve
+     should terminate — sits right at the pill's edge facing the hub. */
+  .hub-anchor {
+    width: 24px;
     height: 1px;
-    background: var(--border-color);
-  }
-
-  .hub-stub-green {
-    background: var(--border-color);
+    flex-shrink: 0;
   }
 
   .hub-pill {
@@ -236,9 +358,6 @@ const icons: Record<string, string> = {
   .dot-red { background: var(--accent-color); }
   .dot-green { background: var(--green-color); }
 
-  /* Entrance animation — plays once on page load, staggered left-to-right
-     and right-to-left so the hub feels like it's assembling itself.
-     Pure CSS keyframes, no JS, no layout shift (opacity + transform only). */
   @keyframes hub-fade-in {
     from { opacity: 0; transform: translateY(8px) scale(0.98); }
     to { opacity: 1; transform: translateY(0) scale(1); }
@@ -265,10 +384,11 @@ const icons: Record<string, string> = {
     }
   }
 
-  /* Mobile: the side-by-side hub layout doesn't survive a narrow viewport,
-     so it collapses into a single stacked column of plain pills — still
-     fully functional links, just without the connector stubs or hub shape. */
   @media (max-width: 760px) {
+    .hub-curves {
+      display: none;
+    }
+
     .hub-diagram {
       flex-direction: column;
       gap: 10px;
@@ -312,7 +432,7 @@ const icons: Record<string, string> = {
       justify-content: stretch;
     }
 
-    .hub-stub {
+    .hub-anchor {
       display: none;
     }
 
