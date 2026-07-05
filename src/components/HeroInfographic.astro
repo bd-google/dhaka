@@ -64,10 +64,13 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   <div class="hub-diagram">
     <div class="hub-col hub-col-left">
       {leftItems.map((item, i) => (
-        <a href={item.href} class="hub-pill hub-anim" style={`animation-delay: ${delayFor(i, 'left')}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
-          <span>{item.text}</span>
-        </a>
+        <div class="hub-row">
+          <a href={item.href} class="hub-pill hub-anim" style={`animation-delay: ${delayFor(i, 'left')}`}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
+            <span>{item.text}</span>
+          </a>
+          <span class="hub-stub"></span>
+        </div>
       ))}
     </div>
 
@@ -77,10 +80,13 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
 
     <div class="hub-col hub-col-right">
       {rightItems.map((item, i) => (
-        <a href={item.href} class="hub-pill hub-pill-green hub-anim" style={`animation-delay: ${delayFor(i, 'right')}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
-          <span>{item.text}</span>
-        </a>
+        <div class="hub-row hub-row-reverse">
+          <span class="hub-stub hub-stub-green"></span>
+          <a href={item.href} class="hub-pill hub-pill-green hub-anim" style={`animation-delay: ${delayFor(i, 'right')}`}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
+            <span>{item.text}</span>
+          </a>
+        </div>
       ))}
     </div>
   </div>
@@ -142,12 +148,35 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     align-items: flex-start;
   }
 
+  .hub-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .hub-row-reverse {
+    justify-content: flex-start;
+  }
+
+  .hub-stub {
+    flex-shrink: 0;
+    width: 24px;
+    height: 1px;
+    background: var(--accent-color);
+    opacity: 0.5;
+  }
+
+  .hub-stub-green {
+    background: var(--green-color);
+  }
+
   .hub-pill {
     display: flex;
     align-items: center;
     gap: 10px;
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     padding: 12px 18px;
     border: 1px solid var(--border-color);
     border-radius: 999px;
@@ -226,7 +255,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   @media (max-width: 760px) {
     .hub-diagram {
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .hub-core {
@@ -246,6 +275,16 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
       max-width: none;
       align-items: stretch;
       width: 100%;
+      gap: 10px;
+    }
+
+    .hub-row,
+    .hub-row-reverse {
+      justify-content: stretch;
+    }
+
+    .hub-stub {
+      display: none;
     }
 
     .hub-pill {
