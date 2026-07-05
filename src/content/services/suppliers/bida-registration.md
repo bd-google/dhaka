@@ -23,7 +23,7 @@ Once your sales in Bangladesh reach a certain volume, you may want to establish 
 
 However, the registration process involves multiple government bodies—BIDA, the RJSC (Registrar of Joint Stock Companies), and the Central Bank (Bangladesh Bank). Navigating this without local expertise is a recipe for frustration and endless paperwork.
 
-### A streamlined registration process
+### A registration process that doesn't stall
 
 We act as your project manager for the setup process. We know exactly which documents need to be notarized, which need to be translated, and which department needs to see them first. We work with experienced local lawyers and accountants to ensure your corporate structure is compliant with the latest Bangladesh laws.
 

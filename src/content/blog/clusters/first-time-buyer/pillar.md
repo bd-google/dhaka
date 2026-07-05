@@ -44,4 +44,4 @@ Never ship a first order without an independent, third-party inspection. This is
 
 ### Conclusion
 
-Bangladesh is open for business. By being prepared, being realistic about costs and timelines, and having a local partner to act as your eyes on the ground, you can leverage the power of the world's most dynamic garment sector to build your brand.
+Bangladesh is open for business. By being prepared, being realistic about costs and timelines, and having a local partner to act as your eyes on the ground, you can put the country's manufacturing scale to work for your brand instead of getting lost in it.

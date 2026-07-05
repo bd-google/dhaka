@@ -1,6 +1,20 @@
 ---
 import { siteMeta } from '../data/siteMeta';
 const currentYear = new Date().getFullYear();
+
+const bdBodies = [
+  { name: 'Ministry of Commerce, Bangladesh', url: 'https://mincom.gov.bd/' },
+  { name: 'BGMEA', url: 'https://www.bgmea.com.bd/' },
+  { name: 'BKMEA', url: 'https://www.bkmea.com/' },
+  { name: 'BEPZA', url: 'https://bepza.gov.bd/' },
+  { name: 'BIDA', url: 'https://bida.gov.bd/' },
+  { name: 'RJSC', url: 'https://roc.gov.bd/' },
+];
+
+const cnBodies = [
+  { name: 'Ministry of Commerce, China (MOFCOM)', url: 'https://english.mofcom.gov.cn/' },
+  { name: 'CCPIT', url: 'https://en.ccpit.org/' },
+];
 ---
 
 <footer style="border-top: 1px solid var(--border-color); padding: 60px 0 40px; margin-top: 80px;">
@@ -28,7 +42,32 @@ const currentYear = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="container" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary);">
+  <div class="container" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+    <div class="grid grid-2-tablet">
+      <div>
+        <h3 class="eyebrow" style="margin-bottom: 12px;">Bangladesh — Official Bodies</h3>
+        <ul style="list-style: none; font-size: 0.85rem;">
+          {bdBodies.map(b => (
+            <li style="margin-bottom: 8px;"><a href={b.url} target="_blank" rel="noopener noreferrer nofollow">{b.name}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3 class="eyebrow" style="margin-bottom: 12px; color: var(--green-color);">China — Official Bodies</h3>
+        <ul style="list-style: none; font-size: 0.85rem;">
+          {cnBodies.map(b => (
+            <li style="margin-bottom: 8px;"><a href={b.url} target="_blank" rel="noopener noreferrer nofollow" style="color: var(--green-color);">{b.name}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 20px; margin-bottom: 0;">
+      These are official third-party government and trade-association websites, listed for reference. {siteMeta.businessName} is independent and not affiliated with these bodies.
+    </p>
+  </div>
+
+  <div class="container" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary);">
     <p>&copy; {currentYear} {siteMeta.businessName}. All rights reserved.</p>
   </div>
 </footer>
+

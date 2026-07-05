@@ -10,11 +10,11 @@ const companies = (await getCollection('companies')).sort(
   (a, b) => new Date(b.data.lastCheckedDate).getTime() - new Date(a.data.lastCheckedDate).getTime()
 );
 
-const statusIcon: Record<string, string> = {
-  verified: '✅',
-  pending: '⏳',
-  flagged: '🚩',
-  could_not_verify: '❌',
+const statusLabel: Record<string, string> = {
+  verified: 'Verified',
+  pending: 'Pending',
+  flagged: 'Flagged',
+  could_not_verify: 'Unverified',
 };
 ---
 
@@ -39,7 +39,7 @@ const statusIcon: Record<string, string> = {
                   <div style="color: var(--text-primary); font-weight:600;">{name}</div>
                   <div style="color: var(--text-secondary); font-size:0.9rem;">{c.country} · {c.role} · {c.category}</div>
                 </div>
-                <div style="white-space:nowrap;">{statusIcon[c.status]}</div>
+                <div style="white-space:nowrap;"><span class={`stamp stamp-${c.status}`}>{statusLabel[c.status]}</span></div>
               </div>
             </a>
           );
