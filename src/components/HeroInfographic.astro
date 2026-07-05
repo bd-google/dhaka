@@ -101,6 +101,19 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   .problem-hub {
     max-width: 1100px;
     margin: 8px auto 0;
+    position: relative;
+  }
+
+  .problem-hub::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    z-index: -1;
+    background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, #000 40%, transparent 90%);
+    mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, #000 40%, transparent 90%);
+    opacity: 0.6;
   }
 
   .hub-diagram {
@@ -121,6 +134,25 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     border: 1.5px solid var(--accent-color);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     position: relative;
+  }
+
+  /* Radar-sweep ring — a slowly rotating conic gradient, like an active
+     scan, reinforcing the "actively monitoring both sides" idea. */
+  .hub-core::after {
+    content: '';
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0%, var(--accent-color) 8%, transparent 20%, transparent 50%, var(--green-color) 58%, transparent 70%, transparent 100%);
+    opacity: 0.5;
+    animation: hub-radar-spin 6s linear infinite;
+    z-index: -2;
+    -webkit-mask-image: radial-gradient(circle, transparent 62%, #000 63%, #000 68%, transparent 69%);
+    mask-image: radial-gradient(circle, transparent 62%, #000 63%, #000 68%, transparent 69%);
+  }
+
+  @keyframes hub-radar-spin {
+    to { transform: rotate(360deg); }
   }
 
   .hub-core::before {
@@ -191,6 +223,37 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     background: var(--green-color);
   }
 
+  /* Fixed node marker at the pill end (a permanent "network node"),
+     softly breathing — distinct from the traveling pulse dot below. */
+  .hub-stub::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    box-shadow: 0 0 4px 1px var(--accent-color);
+    transform: translate(0, -50%);
+    animation: node-breathe 2.4s ease-in-out infinite;
+  }
+
+  .hub-row-reverse .hub-stub::before {
+    left: auto;
+    right: 0;
+  }
+
+  .hub-stub-green::before {
+    background: var(--green-color);
+    box-shadow: 0 0 4px 1px var(--green-color);
+  }
+
+  @keyframes node-breathe {
+    0%, 100% { opacity: 0.5; transform: translate(0, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(0, -50%) scale(1.3); }
+  }
+
   .hub-stub::after {
     content: '';
     position: absolute;
@@ -231,9 +294,15 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
       animation: none;
       opacity: 0;
     }
-    .hub-core::before {
+    .hub-core::before,
+    .hub-core::after {
       animation: none;
       opacity: 0;
+    }
+    .hub-stub::before {
+      animation: none;
+      opacity: 0.8;
+      transform: translate(0, -50%) scale(1);
     }
   }
 
