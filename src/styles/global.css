@@ -93,6 +93,21 @@ img {
   padding: 0 20px;
 }
 
+/* Visually hidden but present for screen readers and search engines —
+   used where we want exactly one real H1 on the page without it taking
+   up visible space in the design. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Eyebrow label — small stencil-style tag used above headings */
 .eyebrow {
   display: inline-block;
