@@ -1,49 +1,44 @@
 ---
-// Self-hosted, zero-image infographic: 7 clickable process tiles built from
-// inline SVG (no external requests, no raster images) connected by a flow
-// line. Each tile links straight to the relevant service or directory page.
-const tiles = [
+// Problem-first hub-and-spoke infographic: a central "Thread Bridge" hex
+// hub with six pain-point pills radiating out (buyer problems on the left,
+// supplier problems on the right, mirroring the two-audience positioning
+// used through the rest of the site). Each pill is a real link straight to
+// the service page that solves that problem. Built from inline SVG icons +
+// flexbox connector stubs only — no absolute-positioned lines that could
+// drift out of alignment on resize, no raster images, no JS.
+const leftItems = [
   {
     href: '/services/buyers/factory-verification',
-    label: 'Factory Verification',
-    audience: 'Buyers',
+    text: "Can't tell if a factory is even real?",
     icon: 'factory',
   },
   {
     href: '/services/buyers/quality-inspection',
-    label: 'Quality Inspection',
-    audience: 'Buyers',
+    text: 'Worried about quality before it ships?',
     icon: 'check-shield',
   },
   {
-    href: '/services/buyers/sample-development',
-    label: 'Sample & Bulk',
-    audience: 'Buyers',
+    href: '/services/buyers/low-moq-knitwear',
+    text: 'MOQs too high for a small brand?',
     icon: 'box',
   },
-  {
-    href: '/companies',
-    label: 'Verified Companies',
-    audience: 'Directory',
-    icon: 'stamp',
-  },
+];
+
+const rightItems = [
   {
     href: '/services/suppliers/local-representative',
-    label: 'Local Representation',
-    audience: 'Suppliers',
+    text: 'No one on the ground in Bangladesh?',
     icon: 'handshake',
   },
   {
-    href: '/services/suppliers/machinery-support',
-    label: 'Machinery & Fabric',
-    audience: 'Suppliers',
-    icon: 'gear',
+    href: '/services/suppliers/market-entry',
+    text: "Don't know where to start with BIDA?",
+    icon: 'document',
   },
   {
-    href: '/services/suppliers/market-entry',
-    label: 'Market Entry',
-    audience: 'Suppliers',
-    icon: 'document',
+    href: '/services/suppliers/machinery-support',
+    text: 'Machinery to sell, no way to reach factories?',
+    icon: 'gear',
   },
 ];
 
@@ -51,107 +46,230 @@ const icons: Record<string, string> = {
   factory: `<path d="M3 21V10l5 3V10l5 3V7l5 4v10H3z"/><path d="M3 21h18"/>`,
   'check-shield': `<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/>`,
   box: `<path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>`,
-  stamp: `<circle cx="12" cy="9" r="5"/><path d="M9 9l2 2 4-4"/><path d="M8 20l1.5-5h5L16 20"/>`,
   handshake: `<path d="M2 12l5-4 4 3 3-2 5 4"/><path d="M9 11l3 3-2 2"/><path d="M13 10l3 3-2 2"/>`,
-  gear: `<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M4.2 7l2.6 1.5M17.2 15.5l2.6 1.5M4.2 17l2.6-1.5M17.2 8.5l2.6-1.5M3 12h3M18 12h3"/>`,
   document: `<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h6M9 9h2"/>`,
+  gear: `<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M4.2 7l2.6 1.5M17.2 15.5l2.6 1.5M4.2 17l2.6-1.5M17.2 8.5l2.6-1.5M3 12h3M18 12h3"/>`,
 };
 ---
 
-<div class="hero-flow" role="list" aria-label="Thread Bridge services overview">
-  {tiles.map((tile, i) => (
-    <>
-      <a href={tile.href} class="flow-tile" role="listitem">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[tile.icon]} />
-        <span class="flow-audience">{tile.audience}</span>
-        <span class="flow-label">{tile.label}</span>
-      </a>
-      {i < tiles.length - 1 && <span class="flow-connector" aria-hidden="true"></span>}
-    </>
-  ))}
+<div class="problem-hub">
+  <p class="hub-eyebrow">Which of these sounds familiar?</p>
+
+  <div class="hub-diagram">
+    <div class="hub-col hub-col-left">
+      {leftItems.map(item => (
+        <div class="hub-row">
+          <a href={item.href} class="hub-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
+            <span>{item.text}</span>
+          </a>
+          <span class="hub-stub" aria-hidden="true"></span>
+        </div>
+      ))}
+    </div>
+
+    <div class="hub-core">
+      <span class="hub-core-label">Thread<br />Bridge</span>
+    </div>
+
+    <div class="hub-col hub-col-right">
+      {rightItems.map(item => (
+        <div class="hub-row hub-row-reverse">
+          <span class="hub-stub hub-stub-green" aria-hidden="true"></span>
+          <a href={item.href} class="hub-pill hub-pill-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
+            <span>{item.text}</span>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="hub-legend">
+    <span><i class="dot dot-red"></i> For Buyers</span>
+    <span><i class="dot dot-green"></i> For Suppliers</span>
+  </div>
 </div>
 
 <style>
-  .hero-flow {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: center;
-    gap: 0;
-    margin: 48px auto 0;
+  .problem-hub {
     max-width: 1100px;
+    margin: 56px auto 0;
   }
 
-  .flow-tile {
+  .hub-eyebrow {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .hub-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .hub-core {
+    flex-shrink: 0;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    border: 1.5px solid var(--accent-color);
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    z-index: 1;
+    margin: 0 -1px;
+  }
+
+  .hub-core-label {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .hub-col {
     display: flex;
     flex-direction: column;
+    gap: 18px;
+    flex: 1;
+    min-width: 0;
+    max-width: 340px;
+  }
+
+  .hub-col-left {
+    align-items: flex-end;
+  }
+
+  .hub-col-right {
+    align-items: flex-start;
+  }
+
+  .hub-row {
+    display: flex;
     align-items: center;
-    gap: 8px;
-    width: 128px;
-    padding: 16px 8px;
+    gap: 0;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .hub-row-reverse {
+    justify-content: flex-start;
+  }
+
+  .hub-stub {
+    flex-shrink: 0;
+    width: 28px;
+    height: 1px;
+    background: var(--border-color);
+  }
+
+  .hub-stub-green {
+    background: var(--border-color);
+  }
+
+  .hub-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 260px;
+    padding: 10px 16px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 999px;
+    background: var(--card-bg);
     color: var(--text-primary);
     text-decoration: none;
-    background: var(--card-bg);
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.25;
     transition: border-color 0.15s ease, transform 0.15s ease;
   }
 
-  .flow-tile:hover {
+  .hub-pill:hover {
     border-color: var(--accent-color);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     text-decoration: none;
   }
 
-  .flow-tile svg {
-    width: 28px;
-    height: 28px;
+  .hub-pill-green:hover {
+    border-color: var(--green-color);
+  }
+
+  .hub-pill svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
     color: var(--accent-color);
   }
 
-  .flow-tile:nth-child(8n+4) svg,
-  .flow-tile:nth-child(8n+9) svg {
+  .hub-pill-green svg {
     color: var(--green-color);
   }
 
-  .flow-audience {
+  .hub-legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 28px;
     font-family: var(--font-mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 0.75rem;
     color: var(--text-secondary);
   }
 
-  .flow-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-align: center;
-    line-height: 1.2;
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
   }
 
-  .flow-connector {
-    align-self: center;
-    width: 20px;
-    height: 1px;
-    background: var(--border-color);
-    margin: 0 4px;
-  }
+  .dot-red { background: var(--accent-color); }
+  .dot-green { background: var(--green-color); }
 
-  @media (max-width: 900px) {
-    .hero-flow {
+  /* Mobile: the side-by-side hub layout doesn't survive a narrow viewport,
+     so it collapses into a single stacked column of plain pills — still
+     fully functional links, just without the connector stubs or hub shape. */
+  @media (max-width: 760px) {
+    .hub-diagram {
+      flex-direction: column;
       gap: 12px;
     }
-    .flow-connector {
+
+    .hub-core {
+      order: -1;
+      margin-bottom: 12px;
+    }
+
+    .hub-col,
+    .hub-col-left,
+    .hub-col-right {
+      max-width: none;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .hub-row,
+    .hub-row-reverse {
+      justify-content: stretch;
+    }
+
+    .hub-stub {
       display: none;
     }
-    .flow-tile {
-      width: 104px;
-    }
-  }
 
-  @media (prefers-reduced-motion: reduce) {
-    .flow-tile {
-      transition: none;
+    .hub-pill {
+      max-width: none;
+      width: 100%;
     }
   }
 </style>
