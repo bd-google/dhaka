@@ -40,13 +40,30 @@ const localBusinessData = {
 
       <HeroInfographic />
 
-      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
+      <div class="hero-ctas">
         <a href="#buyers" class="btn btn-primary">I am a Clothing Buyer</a>
         <a href="#suppliers" class="btn btn-secondary">I am a Textile Supplier</a>
         <a href="#factories" class="btn btn-secondary">I am a Local Factory</a>
       </div>
     </div>
   </section>
+
+  <style>
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 560px) {
+      .hero-ctas {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
 
   <!-- Buyer Path -->
   <section id="buyers" style="padding: 100px 0; background-color: #0d0d0d;">
