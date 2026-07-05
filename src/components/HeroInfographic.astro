@@ -126,18 +126,18 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   .hub-core::before {
     content: '';
     position: absolute;
-    inset: -6px;
+    inset: -12px;
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     background: linear-gradient(90deg, var(--accent-color), var(--green-color));
     opacity: 0;
-    animation: hub-shield-pulse 3.2s ease-in-out infinite;
-    animation-delay: 1.6s;
+    animation: hub-shield-pulse 2.4s ease-in-out infinite;
+    animation-delay: 1s;
     z-index: -1;
   }
 
   @keyframes hub-shield-pulse {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 0.35; }
+    0%, 100% { opacity: 0; transform: scale(0.92); }
+    50% { opacity: 0.6; transform: scale(1.08); }
   }
 
   .hub-core-label {
@@ -196,31 +196,33 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     position: absolute;
     top: 50%;
     left: 0;
-    width: 4px;
-    height: 4px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--accent-color);
+    box-shadow: 0 0 6px 1px var(--accent-color);
     transform: translate(0, -50%);
-    animation: pulse-toward-hub-right 2.6s ease-in infinite;
+    animation: pulse-toward-hub-right 1.8s ease-in infinite;
     animation-delay: var(--pulse-delay, 0s);
   }
 
   .hub-stub-green::after {
     background: var(--green-color);
+    box-shadow: 0 0 6px 1px var(--green-color);
     animation-name: pulse-toward-hub-left;
   }
 
   @keyframes pulse-toward-hub-right {
     0% { left: 0; opacity: 0; }
-    15% { opacity: 1; }
-    90% { opacity: 0.6; }
+    20% { opacity: 1; }
+    85% { opacity: 1; }
     100% { left: 100%; opacity: 0; }
   }
 
   @keyframes pulse-toward-hub-left {
     0% { left: 100%; opacity: 0; }
-    15% { opacity: 1; }
-    90% { opacity: 0.6; }
+    20% { opacity: 1; }
+    85% { opacity: 1; }
     100% { left: 0; opacity: 0; }
   }
 
