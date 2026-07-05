@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import Schema from '../components/Schema.astro';
+import HeroInfographic from '../components/HeroInfographic.astro';
 import { siteMeta } from '../data/siteMeta';
 
 const buyerServices = await getCollection('services', ({ data }) => data.type === 'buyer');
@@ -46,6 +47,8 @@ const localBusinessData = {
         <a href="#suppliers" class="btn btn-secondary">I am a Textile Supplier</a>
         <a href="#factories" class="btn btn-secondary">I am a Local Factory</a>
       </div>
+
+      <HeroInfographic />
     </div>
   </section>
 
