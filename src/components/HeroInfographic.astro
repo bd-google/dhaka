@@ -1,51 +1,57 @@
 ---
-// Network-monitoring style infographic, matching the reference video's
-// visual language directly: hexagon hub with double rotating dashed rings,
-// small hexagon "node" markers with ID tags at each connection point, and
-// dashed glowing lines with a marching/flowing animation. Buyer problems
-// on the left in red, supplier problems on the right in green. Pure CSS —
-// no SVG measurement, no JS — every earlier bug came from trying to keep
-// JS-measured elements in sync, so this sticks to fixed-width, static
-// layout pieces that animate in place.
+// Network-monitoring infographic matching the reference video precisely:
+// small glowing hexagon "nodes" (no box/border around the text — the text
+// floats next to the node exactly like the video), a colored underscore-
+// style slug label above the question, a gray monospace [ID] tag below,
+// dashed marching-line connectors, and a hexagon hub with two counter-
+// rotating dashed rings. Buyer problems red/left, supplier problems
+// green/right. Pure CSS, no JS — fixed-size pieces only, nothing measured
+// at runtime, so nothing can drift out of alignment.
 const leftItems = [
   {
     href: '/services/buyers/factory-verification',
+    slug: 'FACTORY_VERIFY',
     text: "Can't tell if a factory is even real?",
-    icon: 'factory',
     id: 'BUY_01',
+    icon: 'factory',
   },
   {
     href: '/services/buyers/quality-inspection',
+    slug: 'QUALITY_CHECK',
     text: 'Worried about quality before it ships?',
-    icon: 'check-shield',
     id: 'BUY_02',
+    icon: 'check-shield',
   },
   {
     href: '/services/buyers/low-moq-knitwear',
+    slug: 'LOW_MOQ',
     text: 'MOQs too high for a small brand?',
-    icon: 'box',
     id: 'BUY_03',
+    icon: 'box',
   },
 ];
 
 const rightItems = [
   {
     href: '/services/suppliers/local-representative',
+    slug: 'LOCAL_REP',
     text: 'No one on the ground in Bangladesh?',
-    icon: 'handshake',
     id: 'SUP_01',
+    icon: 'handshake',
   },
   {
     href: '/services/suppliers/market-entry',
+    slug: 'BIDA_ENTRY',
     text: "Don't know where to start with BIDA?",
-    icon: 'document',
     id: 'SUP_02',
+    icon: 'document',
   },
   {
     href: '/services/suppliers/machinery-support',
+    slug: 'MACHINERY_SALES',
     text: 'Machinery to sell, no way to reach factories?',
-    icon: 'gear',
     id: 'SUP_03',
+    icon: 'gear',
   },
 ];
 
@@ -67,7 +73,6 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
 ---
 
 <div class="problem-hub">
-  <!-- faint floating background hexagons, like the reference video -->
   <span class="bg-hex bg-hex-1" aria-hidden="true"></span>
   <span class="bg-hex bg-hex-2" aria-hidden="true"></span>
   <span class="bg-hex bg-hex-3" aria-hidden="true"></span>
@@ -77,16 +82,18 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     <div class="hub-col hub-col-left">
       {leftItems.map((item, i) => (
         <div class="hub-row">
-          <a href={item.href} class="hub-pill hub-anim" style={`animation-delay: ${delayFor(i, 'left')}`}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
-            <span class="hub-pill-text">
-              <span class="hub-pill-id">[{item.id}]</span>
-              {item.text}
+          <a href={item.href} class="hub-node-link hub-anim" style={`animation-delay: ${delayFor(i, 'left')}`}>
+            <span class="node-text node-text-left">
+              <span class="node-slug">{item.slug}</span>
+              <span class="node-question">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
+                {item.text}
+              </span>
+              <span class="node-id">[ ID: {item.id} ]</span>
             </span>
+            <span class="node-hex"><span class="node-dot"></span></span>
           </a>
-          <span class="hub-stub">
-            <span class="hub-node"></span>
-          </span>
+          <span class="hub-stub"></span>
         </div>
       ))}
     </div>
@@ -102,14 +109,16 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     <div class="hub-col hub-col-right">
       {rightItems.map((item, i) => (
         <div class="hub-row hub-row-reverse">
-          <span class="hub-stub hub-stub-green">
-            <span class="hub-node hub-node-green"></span>
-          </span>
-          <a href={item.href} class="hub-pill hub-pill-green hub-anim" style={`animation-delay: ${delayFor(i, 'right')}`}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
-            <span class="hub-pill-text">
-              <span class="hub-pill-id">[{item.id}]</span>
-              {item.text}
+          <span class="hub-stub hub-stub-green"></span>
+          <a href={item.href} class="hub-node-link hub-node-link-green hub-anim" style={`animation-delay: ${delayFor(i, 'right')}`}>
+            <span class="node-hex node-hex-green"><span class="node-dot node-dot-green"></span></span>
+            <span class="node-text node-text-right">
+              <span class="node-slug node-slug-green">{item.slug}</span>
+              <span class="node-question">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
+                {item.text}
+              </span>
+              <span class="node-id">[ ID: {item.id} ]</span>
             </span>
           </a>
         </div>
@@ -125,17 +134,16 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
 
 <style>
   .problem-hub {
-    max-width: 1100px;
+    max-width: 1140px;
     margin: 8px auto 0;
     position: relative;
-    padding: 20px 0;
+    padding: 24px 0;
   }
 
-  /* ---- faint scattered background hexagons (atmosphere, like the video) ---- */
   .bg-hex {
     position: absolute;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
     border: 1px solid var(--border-color);
     opacity: 0.5;
@@ -152,24 +160,23 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     background: var(--border-color);
     transform: translate(-50%, -50%);
   }
-  .bg-hex-1 { top: 4%; left: 6%; width: 20px; height: 20px; }
-  .bg-hex-2 { bottom: 8%; left: 14%; }
-  .bg-hex-3 { top: 6%; right: 8%; width: 22px; height: 22px; }
-  .bg-hex-4 { bottom: 4%; right: 16%; width: 18px; height: 18px; }
+  .bg-hex-1 { top: 2%; left: 4%; }
+  .bg-hex-2 { bottom: 4%; left: 12%; width: 18px; height: 18px; }
+  .bg-hex-3 { top: 4%; right: 6%; width: 20px; height: 20px; }
+  .bg-hex-4 { bottom: 2%; right: 14%; width: 16px; height: 16px; }
 
   @media (max-width: 760px) {
     .bg-hex { display: none; }
   }
 
   .hub-diagram {
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 28px;
+    gap: 14px;
   }
 
-  /* ---- hub: hexagon core + two rotating dashed rings ---- */
+  /* ---- hub ---- */
   .hub-core-wrap {
     position: relative;
     flex-shrink: 0;
@@ -187,28 +194,23 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   }
 
   .hub-ring-outer {
-    inset: -26px;
+    inset: -28px;
     border-width: 1.5px;
     border-color: var(--accent-color) var(--accent-color) transparent transparent;
-    opacity: 0.6;
+    opacity: 0.65;
     animation: hub-spin-cw 10s linear infinite;
   }
 
   .hub-ring-inner {
-    inset: -12px;
+    inset: -13px;
     border-width: 1.5px;
     border-color: transparent transparent var(--green-color) var(--green-color);
-    opacity: 0.6;
+    opacity: 0.65;
     animation: hub-spin-ccw 7s linear infinite;
   }
 
-  @keyframes hub-spin-cw {
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes hub-spin-ccw {
-    to { transform: rotate(-360deg); }
-  }
+  @keyframes hub-spin-cw { to { transform: rotate(360deg); } }
+  @keyframes hub-spin-ccw { to { transform: rotate(-360deg); } }
 
   .hub-core {
     position: relative;
@@ -220,7 +222,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     justify-content: center;
     background: var(--card-bg);
     border: 1.5px solid var(--accent-color);
-    box-shadow: 0 0 18px -4px var(--accent-color);
+    box-shadow: 0 0 22px -2px var(--accent-color), 0 0 40px -10px var(--green-color);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
   }
 
@@ -233,22 +235,18 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     line-height: 1.2;
   }
 
+  /* ---- columns ---- */
   .hub-col {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
     flex: 1;
     min-width: 0;
-    max-width: 340px;
+    max-width: 360px;
   }
 
-  .hub-col-left {
-    align-items: flex-end;
-  }
-
-  .hub-col-right {
-    align-items: flex-start;
-  }
+  .hub-col-left { align-items: flex-end; }
+  .hub-col-right { align-items: flex-start; }
 
   .hub-row {
     display: flex;
@@ -257,40 +255,24 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     justify-content: flex-end;
   }
 
-  .hub-row-reverse {
-    justify-content: flex-start;
-  }
+  .hub-row-reverse { justify-content: flex-start; }
 
-  /* ---- connector: dashed, glowing, marching-line animation ---- */
+  /* ---- connector: dashed marching line ---- */
   .hub-stub {
     flex-shrink: 0;
-    width: 30px;
-    height: 10px;
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .hub-stub::before {
-    content: '';
-    display: block;
-    width: 100%;
+    width: 26px;
     height: 2px;
     background-image: repeating-linear-gradient(
-      to right,
-      var(--accent-color) 0 6px,
-      transparent 6px 12px
+      to right, var(--accent-color) 0 6px, transparent 6px 12px
     );
     background-size: 200% 100%;
     animation: dash-march 1s linear infinite;
     box-shadow: 0 0 4px var(--accent-color);
   }
 
-  .hub-stub-green::before {
+  .hub-stub-green {
     background-image: repeating-linear-gradient(
-      to right,
-      var(--green-color) 0 6px,
-      transparent 6px 12px
+      to right, var(--green-color) 0 6px, transparent 6px 12px
     );
     box-shadow: 0 0 4px var(--green-color);
   }
@@ -300,100 +282,113 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     to { background-position: -24px 0; }
   }
 
-  /* small hexagon "network node" marker at the pill end of each connector */
-  .hub-node {
-    position: absolute;
-    top: 50%;
-    left: -3px;
-    width: 10px;
-    height: 10px;
-    transform: translateY(-50%);
-    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    background: var(--card-bg);
-    border: 1.5px solid var(--accent-color);
-    box-shadow: 0 0 5px var(--accent-color);
-    animation: node-breathe 2.4s ease-in-out infinite;
-  }
-
-  .hub-row-reverse .hub-node {
-    left: auto;
-    right: -3px;
-  }
-
-  .hub-node-green {
-    border-color: var(--green-color);
-    box-shadow: 0 0 5px var(--green-color);
-  }
-
-  @keyframes node-breathe {
-    0%, 100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
-    50% { opacity: 1; transform: translateY(-50%) scale(1.25); }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .hub-ring-outer,
-    .hub-ring-inner,
-    .hub-stub::before,
-    .hub-node {
-      animation: none;
-    }
+    .hub-ring-outer, .hub-ring-inner, .hub-stub { animation: none; }
   }
 
-  /* ---- pills ---- */
-  .hub-pill {
+  /* ---- node link: no box, text floats beside a small glowing hex ---- */
+  .hub-node-link {
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 100%;
     max-width: 280px;
-    padding: 10px 16px;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    background: var(--card-bg);
-    color: var(--text-primary);
+    padding: 6px 4px;
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    line-height: 1.3;
-    transition: border-color 0.15s ease, transform 0.15s ease;
+    color: inherit;
   }
 
-  .hub-pill:hover {
-    border-color: var(--accent-color);
-    transform: translateY(-1px) scale(1.02);
-    text-decoration: none;
+  .hub-row-reverse .hub-node-link {
+    flex-direction: row;
   }
 
-  .hub-pill-green:hover {
-    border-color: var(--green-color);
-  }
-
-  .hub-pill svg {
+  .node-hex {
     flex-shrink: 0;
-    width: clamp(22px, 5vw, 28px);
-    height: clamp(22px, 5vw, 28px);
-    color: var(--accent-color);
+    position: relative;
+    width: 18px;
+    height: 18px;
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background: var(--card-bg);
+    border: 1.5px solid var(--accent-color);
+    box-shadow: 0 0 6px var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: node-breathe 2.4s ease-in-out infinite;
   }
 
-  .hub-pill-green svg {
-    color: var(--green-color);
+  .node-hex-green {
+    border-color: var(--green-color);
+    box-shadow: 0 0 6px var(--green-color);
   }
 
-  .hub-pill-text {
+  .node-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-color);
+  }
+
+  .node-dot-green { background: var(--green-color); }
+
+  @keyframes node-breathe {
+    0%, 100% { opacity: 0.75; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .node-hex { animation: none; }
+  }
+
+  .node-text {
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
 
-  .hub-pill-id {
+  .node-text-left { text-align: right; align-items: flex-end; }
+  .node-text-right { text-align: left; align-items: flex-start; }
+
+  .node-slug {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-color);
+    opacity: 0.85;
+  }
+
+  .node-slug-green { color: var(--green-color); }
+
+  .node-question {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+
+  .node-text-left .node-question { flex-direction: row-reverse; }
+
+  .node-question svg {
+    flex-shrink: 0;
+    width: clamp(18px, 4vw, 22px);
+    height: clamp(18px, 4vw, 22px);
+    color: var(--text-secondary);
+  }
+
+  .node-id {
     font-family: var(--font-mono);
     font-size: 0.65rem;
-    letter-spacing: 0.05em;
-    color: var(--accent-color);
+    color: var(--text-secondary);
     opacity: 0.7;
   }
 
-  .hub-pill-green .hub-pill-id {
+  .hub-node-link:hover .node-question {
+    color: var(--accent-color);
+  }
+
+  .hub-node-link-green:hover .node-question {
     color: var(--green-color);
   }
 
@@ -430,58 +425,53 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hub-anim {
-      opacity: 1;
-      animation: none;
-    }
+    .hub-anim { opacity: 1; animation: none; }
   }
 
   @media (max-width: 760px) {
     .hub-diagram {
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .hub-core-wrap {
       order: -1;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       width: 110px;
       height: 110px;
     }
 
-    .hub-core {
-      width: 110px;
-      height: 110px;
-    }
+    .hub-core { width: 110px; height: 110px; }
+    .hub-core-label { font-size: 0.9rem; }
+    .hub-ring-outer { inset: -22px; }
+    .hub-ring-inner { inset: -10px; }
 
-    .hub-core-label {
-      font-size: 0.9rem;
-    }
-
-    .hub-ring-outer { inset: -20px; }
-    .hub-ring-inner { inset: -9px; }
-
-    .hub-col,
-    .hub-col-left,
-    .hub-col-right {
+    .hub-col, .hub-col-left, .hub-col-right {
       max-width: none;
       align-items: stretch;
       width: 100%;
-      gap: 12px;
+      gap: 14px;
     }
 
-    .hub-row,
-    .hub-row-reverse {
-      justify-content: stretch;
-    }
+    .hub-row, .hub-row-reverse { justify-content: stretch; }
+    .hub-stub { display: none; }
 
-    .hub-stub {
-      display: none;
-    }
-
-    .hub-pill {
+    .hub-node-link {
       max-width: none;
       width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--card-bg);
+    }
+
+    .node-text-left, .node-text-right {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .node-text-left .node-question {
+      flex-direction: row;
     }
   }
 </style>
