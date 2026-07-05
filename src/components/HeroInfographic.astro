@@ -57,9 +57,9 @@ const icons: Record<string, string> = {
 
   <div class="hub-diagram">
     <div class="hub-col hub-col-left">
-      {leftItems.map(item => (
-        <div class="hub-row">
-          <a href={item.href} class="hub-pill">
+      {leftItems.map((item, i) => (
+        <div class="hub-row" style={`--d: ${i * 0.08}s`}>
+          <a href={item.href} class="hub-pill hub-anim hub-anim-left">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
             <span>{item.text}</span>
           </a>
@@ -68,15 +68,15 @@ const icons: Record<string, string> = {
       ))}
     </div>
 
-    <div class="hub-core">
+    <div class="hub-core hub-anim hub-anim-core">
       <span class="hub-core-label">Thread<br />Bridge</span>
     </div>
 
     <div class="hub-col hub-col-right">
-      {rightItems.map(item => (
-        <div class="hub-row hub-row-reverse">
+      {rightItems.map((item, i) => (
+        <div class="hub-row hub-row-reverse" style={`--d: ${i * 0.08}s`}>
           <span class="hub-stub hub-stub-green" aria-hidden="true"></span>
-          <a href={item.href} class="hub-pill hub-pill-green">
+          <a href={item.href} class="hub-pill hub-pill-green hub-anim hub-anim-right">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
             <span>{item.text}</span>
           </a>
@@ -94,7 +94,7 @@ const icons: Record<string, string> = {
 <style>
   .problem-hub {
     max-width: 1100px;
-    margin: 56px auto 0;
+    margin: 8px auto 0;
   }
 
   .hub-eyebrow {
@@ -236,18 +236,66 @@ const icons: Record<string, string> = {
   .dot-red { background: var(--accent-color); }
   .dot-green { background: var(--green-color); }
 
+  /* Entrance animation — plays once on page load, staggered left-to-right
+     and right-to-left so the hub feels like it's assembling itself.
+     Pure CSS keyframes, no JS, no layout shift (opacity + transform only). */
+  @keyframes hub-fade-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .hub-anim {
+    opacity: 0;
+    animation: hub-fade-in 0.5s ease-out forwards;
+  }
+
+  .hub-anim-core {
+    animation-delay: 0.05s;
+  }
+
+  .hub-anim-left,
+  .hub-anim-right {
+    animation-delay: calc(0.2s + var(--d, 0s));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hub-anim {
+      opacity: 1;
+      animation: none;
+    }
+  }
+
   /* Mobile: the side-by-side hub layout doesn't survive a narrow viewport,
      so it collapses into a single stacked column of plain pills — still
      fully functional links, just without the connector stubs or hub shape. */
   @media (max-width: 760px) {
     .hub-diagram {
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .hub-diagram::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--border-color);
     }
 
     .hub-core {
       order: -1;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      margin-left: -14px;
+      width: 110px;
+      height: 110px;
+    }
+
+    .hub-core-label {
+      font-size: 0.9rem;
     }
 
     .hub-col,
@@ -256,6 +304,7 @@ const icons: Record<string, string> = {
       max-width: none;
       align-items: stretch;
       width: 100%;
+      gap: 10px;
     }
 
     .hub-row,
@@ -270,6 +319,7 @@ const icons: Record<string, string> = {
     .hub-pill {
       max-width: none;
       width: 100%;
+      padding: 12px 14px;
     }
   }
 </style>

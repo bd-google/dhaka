@@ -34,21 +34,22 @@ const localBusinessData = {
   <Schema slot="schema" type="LocalBusiness" data={localBusinessData} />
 
   <!-- Hero Section -->
-  <section style="padding: 80px 0 100px; border-bottom: 1px solid var(--border-color);">
+  <section style="padding: 48px 0 64px; border-bottom: 1px solid var(--border-color);">
     <div class="container" style="text-align: center;">
-      <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 24px; max-width: 20ch; margin-left: auto; margin-right: auto; line-height: 1.1;">
+      <h1 style="font-size: clamp(1.8rem, 5vw, 2.75rem); margin-bottom: 16px; max-width: 22ch; margin-left: auto; margin-right: auto; line-height: 1.15;">
         The bridge between global standards and Bangladesh production.
       </h1>
-      <p style="font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--text-primary); margin-bottom: 40px; max-width: 35ch; margin-left: auto; margin-right: auto; line-height: 1.4;">
+      <p style="font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-secondary); margin-bottom: 28px; max-width: 40ch; margin-left: auto; margin-right: auto; line-height: 1.4;">
         Independent factory verification for clothing brands, local representation for foreign textile suppliers, and buyer-facing support for Bangladeshi factories.
       </p>
-      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+
+      <HeroInfographic />
+
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 40px;">
         <a href="#buyers" class="btn btn-primary">I am a Clothing Buyer</a>
         <a href="#suppliers" class="btn btn-secondary">I am a Textile Supplier</a>
         <a href="#factories" class="btn btn-secondary">I am a Local Factory</a>
       </div>
-
-      <HeroInfographic />
     </div>
   </section>
 
