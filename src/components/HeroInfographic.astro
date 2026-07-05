@@ -69,7 +69,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
             <span>{item.text}</span>
           </a>
-          <span class="hub-stub"></span>
+          <span class="hub-stub" style={`--pulse-delay: ${i * 0.8}s`}></span>
         </div>
       ))}
     </div>
@@ -81,7 +81,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     <div class="hub-col hub-col-right">
       {rightItems.map((item, i) => (
         <div class="hub-row hub-row-reverse">
-          <span class="hub-stub hub-stub-green"></span>
+          <span class="hub-stub hub-stub-green" style={`--pulse-delay: ${i * 0.8 + 0.4}s`}></span>
           <a href={item.href} class="hub-pill hub-pill-green hub-anim" style={`animation-delay: ${delayFor(i, 'right')}`}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[item.icon]} />
             <span>{item.text}</span>
@@ -120,6 +120,24 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     background: var(--card-bg);
     border: 1.5px solid var(--accent-color);
     clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    position: relative;
+  }
+
+  .hub-core::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+    background: linear-gradient(90deg, var(--accent-color), var(--green-color));
+    opacity: 0;
+    animation: hub-shield-pulse 3.2s ease-in-out infinite;
+    animation-delay: 1.6s;
+    z-index: -1;
+  }
+
+  @keyframes hub-shield-pulse {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.35; }
   }
 
   .hub-core-label {
@@ -165,10 +183,56 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     height: 1px;
     background: var(--accent-color);
     opacity: 0.5;
+    position: relative;
+    overflow: visible;
   }
 
   .hub-stub-green {
     background: var(--green-color);
+  }
+
+  .hub-stub::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    transform: translate(0, -50%);
+    animation: pulse-toward-hub-right 2.6s ease-in infinite;
+    animation-delay: var(--pulse-delay, 0s);
+  }
+
+  .hub-stub-green::after {
+    background: var(--green-color);
+    animation-name: pulse-toward-hub-left;
+  }
+
+  @keyframes pulse-toward-hub-right {
+    0% { left: 0; opacity: 0; }
+    15% { opacity: 1; }
+    90% { opacity: 0.6; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  @keyframes pulse-toward-hub-left {
+    0% { left: 100%; opacity: 0; }
+    15% { opacity: 1; }
+    90% { opacity: 0.6; }
+    100% { left: 0; opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hub-stub::after {
+      animation: none;
+      opacity: 0;
+    }
+    .hub-core::before {
+      animation: none;
+      opacity: 0;
+    }
   }
 
   .hub-pill {
@@ -201,9 +265,16 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
 
   .hub-pill svg {
     flex-shrink: 0;
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     color: var(--accent-color);
+  }
+
+  @media (min-width: 761px) {
+    .hub-pill svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 
   .hub-pill-green svg {
@@ -290,6 +361,12 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     .hub-pill {
       max-width: none;
       width: 100%;
+      padding: 14px 18px;
+      gap: 14px;
+    }
+
+    .hub-diagram {
+      padding: 0 4px;
     }
   }
 </style>
