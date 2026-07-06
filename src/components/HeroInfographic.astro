@@ -217,7 +217,8 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   .hub-col {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    justify-content: space-between;
+    height: 220px;
     flex: 1;
     min-width: 0;
     max-width: 360px;
@@ -360,7 +361,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     }
 
     .hub-col {
-      gap: 16px;
+      height: 130px;
       max-width: none;
     }
 
@@ -386,6 +387,10 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     .hub-core-wrap dotlottie-wc {
       width: 110px !important;
       height: 110px !important;
+    }
+
+    .hub-col {
+      height: 110px;
     }
 
     .node-question {
