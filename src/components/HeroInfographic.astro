@@ -189,6 +189,22 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   .hub-col-left { align-items: flex-end; }
   .hub-col-right { align-items: flex-start; }
 
+  /* Bordered panel around each group of 3 — desktop/tablet only.
+     Mobile keeps its existing plain layout untouched, as requested. */
+  @media (min-width: 761px) {
+    .hub-col-left {
+      border: 1.5px solid var(--accent-color);
+      border-radius: 6px;
+      padding: 24px 28px;
+    }
+
+    .hub-col-right {
+      border: 1.5px solid var(--green-color);
+      border-radius: 6px;
+      padding: 24px 28px;
+    }
+  }
+
   .hub-row {
     display: flex;
     align-items: center;
