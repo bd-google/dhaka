@@ -86,9 +86,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
             <span class="node-text node-text-left">
               <span class="node-question">{item.text}</span>
             </span>
-            <span class="node-hex"><span class="node-dot"></span></span>
           </a>
-          <span class="hub-stub"></span>
         </div>
       ))}
     </div>
@@ -105,9 +103,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     <div class="hub-col hub-col-right">
       {rightItems.map((item, i) => (
         <div class="hub-row hub-row-reverse">
-          <span class="hub-stub hub-stub-green"></span>
           <a href={item.href} class="hub-node-link hub-node-link-green hub-anim" style={`animation-delay: ${delayFor(i, 'right')}`}>
-            <span class="node-hex node-hex-green"><span class="node-dot node-dot-green"></span></span>
             <span class="node-text node-text-right">
               <span class="node-question">{item.text}</span>
             </span>
@@ -164,7 +160,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 28px;
   }
 
   /* ---- hub: now rendered by the real Lottie animation, this wrapper
@@ -202,36 +198,10 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
 
   .hub-row-reverse { justify-content: flex-start; }
 
-  /* ---- connector: dashed marching line ---- */
-  .hub-stub {
-    flex-shrink: 0;
-    width: 26px;
-    height: 2px;
-    background-image: repeating-linear-gradient(
-      to right, var(--accent-color) 0 6px, transparent 6px 12px
-    );
-    background-size: 200% 100%;
-    animation: dash-march 1s linear infinite;
-    box-shadow: 0 0 4px var(--accent-color);
-  }
-
-  .hub-stub-green {
-    background-image: repeating-linear-gradient(
-      to right, var(--green-color) 0 6px, transparent 6px 12px
-    );
-    box-shadow: 0 0 4px var(--green-color);
-  }
-
-  @keyframes dash-march {
-    from { background-position: 0 0; }
-    to { background-position: -24px 0; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hub-stub { animation: none; }
-  }
-
-  /* ---- node link: no box, text floats beside a small glowing hex ---- */
+  /* ---- node link: plain text, no box, no separate connector — the
+     Lottie animation itself already draws its own dot+line, so a second
+     hand-coded connector was redundant and looked like stray dash marks
+     at small sizes ---- */
   .hub-node-link {
     display: flex;
     align-items: center;
@@ -240,48 +210,6 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     padding: 6px 4px;
     text-decoration: none;
     color: inherit;
-  }
-
-  .hub-row-reverse .hub-node-link {
-    flex-direction: row;
-  }
-
-  .node-hex {
-    flex-shrink: 0;
-    position: relative;
-    width: 18px;
-    height: 18px;
-    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-    background: var(--card-bg);
-    border: 1.5px solid var(--accent-color);
-    box-shadow: 0 0 6px var(--accent-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: node-breathe 2.4s ease-in-out infinite;
-  }
-
-  .node-hex-green {
-    border-color: var(--green-color);
-    box-shadow: 0 0 6px var(--green-color);
-  }
-
-  .node-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--accent-color);
-  }
-
-  .node-dot-green { background: var(--green-color); }
-
-  @keyframes node-breathe {
-    0%, 100% { opacity: 0.75; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.15); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .node-hex { animation: none; }
   }
 
   .node-text {
@@ -399,19 +327,10 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
       max-width: none;
     }
 
-    .hub-stub {
-      width: 12px;
-    }
-
     .hub-node-link {
       max-width: none;
       gap: 6px;
       padding: 2px;
-    }
-
-    .node-hex {
-      width: 13px;
-      height: 13px;
     }
 
     .node-question {
