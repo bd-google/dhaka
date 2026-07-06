@@ -103,7 +103,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
         src="https://lottie.host/eef3f6bd-535b-4aac-911a-3f6c65bc9f7f/hr0omEw2Y8.lottie"
         autoplay
         loop
-        style="width: 150px; height: 150px;"
+        style="width: 220px; height: 220px;"
       ></dotlottie-wc>
     </div>
 
@@ -182,8 +182,8 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   .hub-core-wrap {
     position: relative;
     flex-shrink: 0;
-    width: 150px;
-    height: 150px;
+    width: 220px;
+    height: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -384,49 +384,87 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   }
 
   @media (max-width: 760px) {
+    .problem-hub {
+      padding: 12px 0;
+    }
+
     .hub-diagram {
-      flex-direction: column;
-      gap: 16px;
+      gap: 4px;
+      align-items: center;
     }
 
     .hub-core-wrap {
-      order: -1;
-      margin-bottom: 16px;
-      width: 110px;
-      height: 110px;
+      width: 90px;
+      height: 90px;
+      flex-shrink: 0;
     }
 
     .hub-core-wrap dotlottie-wc {
-      width: 120px !important;
-      height: 120px !important;
+      width: 90px !important;
+      height: 90px !important;
     }
 
-    .hub-col, .hub-col-left, .hub-col-right {
-      max-width: none;
-      align-items: stretch;
-      width: 100%;
+    .hub-col {
       gap: 14px;
+      max-width: none;
     }
 
-    .hub-row, .hub-row-reverse { justify-content: stretch; }
-    .hub-stub { display: none; }
+    .hub-stub {
+      width: 8px;
+    }
 
     .hub-node-link {
       max-width: none;
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      background: var(--card-bg);
+      gap: 6px;
+      padding: 2px;
     }
 
-    .node-text-left, .node-text-right {
-      text-align: left;
-      align-items: flex-start;
+    .node-hex {
+      width: 14px;
+      height: 14px;
     }
 
-    .node-text-left .node-question {
-      flex-direction: row;
+    .node-slug {
+      font-size: 0.58rem;
+    }
+
+    .node-question {
+      font-size: 0.72rem;
+      gap: 4px;
+    }
+
+    .node-question svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .node-id {
+      font-size: 0.55rem;
+    }
+  }
+
+  /* Very narrow phones: trim further, drop the icons to save width */
+  @media (max-width: 400px) {
+    .hub-core-wrap {
+      width: 72px;
+      height: 72px;
+    }
+
+    .hub-core-wrap dotlottie-wc {
+      width: 72px !important;
+      height: 72px !important;
+    }
+
+    .node-question svg {
+      display: none;
+    }
+
+    .node-slug {
+      font-size: 0.55rem;
+    }
+
+    .node-question {
+      font-size: 0.68rem;
     }
   }
 </style>
