@@ -279,6 +279,14 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     line-height: 1.25;
   }
 
+  .node-text-left .node-question {
+    color: var(--accent-color);
+  }
+
+  .node-text-right .node-question {
+    color: var(--green-color);
+  }
+
   .node-text-left .node-question { flex-direction: row-reverse; }
 
   .node-question svg {
@@ -295,12 +303,9 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     opacity: 0.7;
   }
 
-  .hub-node-link:hover .node-question {
-    color: var(--accent-color);
-  }
-
+  .hub-node-link:hover .node-question,
   .hub-node-link-green:hover .node-question {
-    color: var(--green-color);
+    text-decoration: underline;
   }
 
   .hub-legend {
