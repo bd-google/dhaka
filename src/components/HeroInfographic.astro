@@ -98,12 +98,13 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
       ))}
     </div>
 
-    <div class="hub-core-wrap">
-      <span class="hub-ring hub-ring-outer" aria-hidden="true"></span>
-      <span class="hub-ring hub-ring-inner" aria-hidden="true"></span>
-      <div class="hub-core hub-anim" style={`animation-delay: ${HUB_DELAY}s`}>
-        <span class="hub-core-label">THREAD<br />BRIDGE</span>
-      </div>
+    <div class="hub-core-wrap hub-anim" style={`animation-delay: ${HUB_DELAY}s`}>
+      <dotlottie-wc
+        src="https://lottie.host/eef3f6bd-535b-4aac-911a-3f6c65bc9f7f/hr0omEw2Y8.lottie"
+        autoplay
+        loop
+        style="width: 150px; height: 150px;"
+      ></dotlottie-wc>
     </div>
 
     <div class="hub-col hub-col-right">
@@ -176,64 +177,18 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     gap: 14px;
   }
 
-  /* ---- hub ---- */
+  /* ---- hub: now rendered by the real Lottie animation, this wrapper
+     just sizes/positions it ---- */
   .hub-core-wrap {
     position: relative;
     flex-shrink: 0;
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .hub-ring {
-    position: absolute;
-    border-radius: 50%;
-    border-style: dashed;
-  }
-
-  .hub-ring-outer {
-    inset: -28px;
-    border-width: 1.5px;
-    border-color: var(--accent-color) var(--accent-color) transparent transparent;
-    opacity: 0.65;
-    animation: hub-spin-cw 10s linear infinite;
-  }
-
-  .hub-ring-inner {
-    inset: -13px;
-    border-width: 1.5px;
-    border-color: transparent transparent var(--green-color) var(--green-color);
-    opacity: 0.65;
-    animation: hub-spin-ccw 7s linear infinite;
-  }
-
-  @keyframes hub-spin-cw { to { transform: rotate(360deg); } }
-  @keyframes hub-spin-ccw { to { transform: rotate(-360deg); } }
-
-  .hub-core {
-    position: relative;
-    z-index: 1;
-    width: 130px;
-    height: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--card-bg);
-    border: 1.5px solid var(--accent-color);
-    box-shadow: 0 0 22px -2px var(--accent-color), 0 0 40px -10px var(--green-color);
-    clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-  }
-
-  .hub-core-label {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    font-size: 1.05rem;
-    letter-spacing: 0.06em;
-    text-align: center;
-    line-height: 1.2;
-  }
 
   /* ---- columns ---- */
   .hub-col {
@@ -283,7 +238,7 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hub-ring-outer, .hub-ring-inner, .hub-stub { animation: none; }
+    .hub-stub { animation: none; }
   }
 
   /* ---- node link: no box, text floats beside a small glowing hex ---- */
@@ -441,10 +396,10 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
       height: 110px;
     }
 
-    .hub-core { width: 110px; height: 110px; }
-    .hub-core-label { font-size: 0.9rem; }
-    .hub-ring-outer { inset: -22px; }
-    .hub-ring-inner { inset: -10px; }
+    .hub-core-wrap dotlottie-wc {
+      width: 120px !important;
+      height: 120px !important;
+    }
 
     .hub-col, .hub-col-left, .hub-col-right {
       max-width: none;
@@ -475,3 +430,11 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
     }
   }
 </style>
+
+<script>
+  // Registers <dotlottie-wc>. Bundled by Astro/Vite from the npm package
+  // (self-hosted, no external <script src> tag) — only the animation data
+  // itself is fetched at runtime from lottie.host, same as any embedded
+  // video or font would be.
+  import '@lottiefiles/dotlottie-wc';
+</script>

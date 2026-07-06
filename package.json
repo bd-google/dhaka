@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/cloudflare": "14.1.1",
     "@astrojs/sitemap": "3.7.3",
+    "@lottiefiles/dotlottie-wc": "0.9.19",
     "astro": "7.0.6",
     "wrangler": "^4.107.0"
   }
