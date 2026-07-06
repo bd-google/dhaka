@@ -78,6 +78,9 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   <span class="bg-hex bg-hex-3" aria-hidden="true"></span>
   <span class="bg-hex bg-hex-4" aria-hidden="true"></span>
 
+  <span class="frame-bracket frame-bracket-left" aria-hidden="true"></span>
+  <span class="frame-bracket frame-bracket-right" aria-hidden="true"></span>
+
   <div class="hub-diagram">
     <div class="hub-col hub-col-left">
       {leftItems.map((item, i) => (
@@ -152,6 +155,40 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
   .bg-hex-3 { top: 4%; right: 6%; width: 20px; height: 20px; }
   .bg-hex-4 { bottom: 2%; right: 14%; width: 16px; height: 16px; }
 
+  /* Decorative corner-bracket frames — far outer edges, purely
+     ornamental, don't touch the text or hub. Open on the inner side,
+     like a "[" and "]" shape. */
+  .frame-bracket {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 200px;
+    transform: translateY(-50%);
+    z-index: -1;
+  }
+
+  .frame-bracket-left {
+    left: 0;
+    border-top: 2px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    border-left: 2px solid var(--accent-color);
+    opacity: 0.7;
+  }
+
+  .frame-bracket-right {
+    right: 0;
+    border-top: 2px solid var(--green-color);
+    border-bottom: 2px solid var(--green-color);
+    border-right: 2px solid var(--green-color);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .frame-bracket {
+      display: none;
+    }
+  }
+
   @media (max-width: 760px) {
     .bg-hex { display: none; }
   }
@@ -188,22 +225,6 @@ function delayFor(rowIndex: number, side: 'left' | 'right') {
 
   .hub-col-left { align-items: flex-end; }
   .hub-col-right { align-items: flex-start; }
-
-  /* Bordered panel around each group of 3 — desktop/tablet only.
-     Mobile keeps its existing plain layout untouched, as requested. */
-  @media (min-width: 761px) {
-    .hub-col-left {
-      border: 1.5px solid var(--accent-color);
-      border-radius: 6px;
-      padding: 24px 28px;
-    }
-
-    .hub-col-right {
-      border: 1.5px solid var(--green-color);
-      border-radius: 6px;
-      padding: 24px 28px;
-    }
-  }
 
   .hub-row {
     display: flex;
