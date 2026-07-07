@@ -12,7 +12,10 @@ const navLinks = [
 
 <header class="site-header">
   <nav class="container nav-bar">
-    <a href="/" class="logo">{siteMeta.businessName}</a>
+    <a href="/" class="logo">
+      <img src="/logo-mark.svg" alt="" width="28" height="28" class="logo-mark" />
+      {siteMeta.businessName}
+    </a>
 
     <ul class="nav-links nav-links-desktop">
       {navLinks.map(link => (
@@ -54,9 +57,16 @@ const navLinks = [
   }
 
   .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: 700;
     color: var(--text-primary);
     font-size: 1.2rem;
+  }
+
+  .logo-mark {
+    flex-shrink: 0;
   }
 
   .logo:hover {

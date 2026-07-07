@@ -2,8 +2,8 @@
 title: Salary vs commission agent models in Bangladesh
 description: Which representation model is right for your textile business? Comparing the costs and incentives of different local partners.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-06
 cluster: local-rep
 isPillar: false

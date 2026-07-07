@@ -2,8 +2,8 @@
 title: Sample cost vs bulk cost in Bangladesh
 description: Why is a single sample $50 when the bulk price is $5? Learn the reason for the "sample premium" and how to get it refunded.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-02
 cluster: sample-process
 isPillar: false

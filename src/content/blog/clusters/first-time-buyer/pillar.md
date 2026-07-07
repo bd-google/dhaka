@@ -2,8 +2,8 @@
 title: "First-time buyer's guide to ordering clothing from Bangladesh"
 description: "Everything you need to know to start your sourcing journey in Dhaka. From deposits to total landed cost calculations."
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-07-15
 cluster: first-time-buyer
 isPillar: true

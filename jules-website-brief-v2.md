@@ -132,7 +132,7 @@ leverage, seamless, streamline, cutting-edge, dynamic, holistic, empower, unlock
 - State the real problem first, in the way a buyer or supplier would actually describe it, before the solution
 - Use specific numbers and concrete detail instead of vague praise
 - Contractions are fine (don't, won't, it's) — this is not formal corporate writing
-- Every page carries a business-level byline ("Written by the ThreadBridge BD team") — no individual's real name or photo is ever used on the site. This is a firm client requirement, not a stylistic default.
+- Every page carries a business-level byline ("Written by the Checkloom team") — no individual's real name or photo is ever used on the site. This is a firm client requirement, not a stylistic default.
 - If a claim can't be backed by real experience, don't make the claim
 
 ---
@@ -150,7 +150,7 @@ leverage, seamless, streamline, cutting-edge, dynamic, holistic, empower, unlock
 ### Content
 - [ ] One H1 per page, logical H2/H3 hierarchy
 - [ ] Every page's content is unique — no repeated boilerplate (Google's "Information Gain" signal now penalizes generic, reworded content)
-- [ ] Business-level byline (ThreadBridge BD) on every content/blog page — no individual name or photo
+- [ ] Business-level byline (Checkloom) on every content/blog page — no individual name or photo
 - [ ] Internal linking between pillar and cluster pages in both directions
 - [ ] Problem-first, solution-second structure, not generic marketing copy
 

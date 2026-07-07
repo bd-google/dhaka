@@ -2,8 +2,8 @@
 title: Where to place a 100 to 300 piece garment order in Bangladesh
 description: Small orders aren't impossible in Bangladesh. Learn how to find and work with small-run garment factories for your startup brand.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-05-20
 cluster: low-moq
 isPillar: true

@@ -2,8 +2,8 @@
 title: Signs of a middleman factory in Bangladesh
 description: Learn the red flags to watch for when sourcing in Bangladesh. Spot a "commission agent" before you pay your deposit.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-05-16
 cluster: factory-verification
 isPillar: false
@@ -21,4 +21,4 @@ Here are the most common signs you are talking to a middleman:
 4. **Vague Address Details**: They will tell you the city (e.g., "Gazipur"), but they won't give you the exact building number and floor until the last possible second.
 5. **Bank Account Mismatch**: If the bank details they provide for the deposit are for a company name that is different from the "factory" name, you are paying an agent's commission, not a manufacturer's invoice.
 
-Before you send any money, ask for a copy of the Trade License and verify the address. If you're still unsure, have a local partner like ThreadBridge BD conduct a physical "Spot Check" visit.
+Before you send any money, ask for a copy of the Trade License and verify the address. If you're still unsure, have a local partner like Checkloom conduct a physical "Spot Check" visit.

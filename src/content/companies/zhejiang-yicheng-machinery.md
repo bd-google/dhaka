@@ -21,7 +21,7 @@ website: "https://example.com"
 status: "verified"
 lastCheckedDate: "2026-06-12"
 summary: >
-  Thread Bridge confirmed Zhejiang Yicheng Machinery's Chinese business
+  Checkloom confirmed Zhejiang Yicheng Machinery's Chinese business
   registration is active and matches the company's declared trading name.
   The company currently supplies circular knitting machines to two
   Gazipur-based factories through a local agent. No BIDA registration was
@@ -34,7 +34,7 @@ findings:
   - "No direct BIDA registration found — operates through buyer-side LC, which is normal for this type of supplier."
 
 verificationSources:
-  - name: "Thread Bridge (document + reference check)"
+  - name: "Checkloom (document + reference check)"
     type: "primary"
   - name: "National Enterprise Credit Information Publicity System (China)"
     type: "government"

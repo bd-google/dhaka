@@ -38,7 +38,7 @@ website: "https://example.com"
 status: "verified"
 lastCheckedDate: "2026-05-03"
 summary: >
-  Thread Bridge physically visited the Narayanganj facility and confirmed
+  Checkloom physically visited the Narayanganj facility and confirmed
   the trade license and BIN match RJSC records. The factory operates 6
   production lines with a stated monthly knitwear capacity of 80,000
   pieces. Ownership structure matches company filings, and the DIFE fire
@@ -51,7 +51,7 @@ findings:
   - "RSC (RMG Sustainability Council) coverage confirmed."
 
 verificationSources:
-  - name: "Thread Bridge (on-site factory visit)"
+  - name: "Checkloom (on-site factory visit)"
     type: "primary"
   - name: "RJSC (Registrar of Joint Stock Companies and Firms)"
     type: "government"

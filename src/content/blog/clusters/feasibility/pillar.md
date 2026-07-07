@@ -2,8 +2,8 @@
 title: Is your fabric spec and budget actually realistic for Bangladesh sourcing?
 description: Avoid the most common sourcing mistake. Learn why your fabric choices might be the reason factories are ignoring your RFQs.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-05-25
 cluster: feasibility
 isPillar: true
@@ -56,7 +56,7 @@ Before you send your tech pack to 20 factories, do a feasibility audit:
 3. **Construction Check**: Does this garment require specialized machinery (e.g., seam taping, laser cutting) that only 5% of factories have?
 4. **Price Benchmark**: Is my target price based on current market data or just a guess?
 
-At ThreadBridge BD, we perform these feasibility checks for our clients every day. We tell you the truth before you waste months on samples that will never go to bulk. We help you adjust your specs—perhaps changing a custom dye to a "near-match" stock color—so that you can actually get your brand off the ground and into the hands of your customers.
+At Checkloom, we perform these feasibility checks for our clients every day. We tell you the truth before you waste months on samples that will never go to bulk. We help you adjust your specs—perhaps changing a custom dye to a "near-match" stock color—so that you can actually get your brand off the ground and into the hands of your customers.
 
 ### Conclusion
 

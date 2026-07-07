@@ -17,6 +17,8 @@ const localBusinessData = {
   "name": siteMeta.businessName,
   "description": siteMeta.description,
   "url": siteMeta.url,
+  "logo": new URL(siteMeta.logo, siteMeta.url).toString(),
+  "image": new URL(siteMeta.logo, siteMeta.url).toString(),
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Dhaka",
@@ -26,7 +28,8 @@ const localBusinessData = {
     "@type": "ContactPoint",
     "telephone": siteMeta.contact.phone,
     "contactType": "customer service"
-  }
+  },
+  "sameAs": siteMeta.social.map(s => s.url)
 };
 ---
 
@@ -150,7 +153,7 @@ const localBusinessData = {
   <section style="padding: 100px 0; background-color: var(--card-bg); border-top: 1px solid var(--border-color);">
     <div class="container grid grid-2-tablet" style="align-items: center; gap: 60px;">
       <div>
-        <h2 style="font-size: 2.25rem; margin-bottom: 24px;">Why ThreadBridge BD?</h2>
+        <h2 style="font-size: 2.25rem; margin-bottom: 24px;">Why Checkloom?</h2>
         <p style="font-size: 1.1rem; color: var(--text-primary);">Whoever hires us first, we work only for them on that deal — never both sides of the same transaction.</p>
         <p>Sourcing agents who take fees from both the buyer and the factory create a built-in conflict of interest. We don't. On every engagement, you know exactly who's paying us and why, in writing, before work starts.</p>
         <ul style="list-style: none; margin-top: 30px;">

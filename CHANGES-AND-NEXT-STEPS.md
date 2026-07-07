@@ -37,13 +37,13 @@ the "no personal name or photo anywhere on the site" requirement.
 
 Fixed:
 - `content.config.ts`: author schema no longer requires a personal name or
-  photo — defaults to "ThreadBridge BD"
+  photo — defaults to "Checkloom"
 - All 22 blog posts: fabricated personal identity stripped, replaced with
   business-level attribution
 - Brief document updated so this doesn't get reintroduced later
 
 ## 4. Rebranding
-Old name "Awesome Axis" replaced with "ThreadBridge BD" across siteMeta,
+Old name "Awesome Axis" replaced with "Checkloom" across siteMeta,
 astro.config.mjs, and all content/pages. Update `siteMeta.ts` contact email/
 phone with your real details before going live — placeholders are still in
 there.

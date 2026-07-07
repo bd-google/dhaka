@@ -23,7 +23,7 @@ const blog = defineCollection({
     description: z.string(),
     // No personal name/photo required — attribution is to the business, not an individual.
     author: z.object({
-      name: z.string().default('ThreadBridge BD'),
+      name: z.string().default('Checkloom'),
       bio: z.string().optional(),
     }).optional(),
     publishDate: z.coerce.date(),
@@ -109,7 +109,7 @@ const companies = defineCollection({
     summary: z.string(), // unique narrative, written per company — never templated
     findings: z.array(z.string()).optional(),
 
-    // Sources used to verify — mix of primary (Thread Bridge) and third-party/government/association
+    // Sources used to verify — mix of primary (Checkloom) and third-party/government/association
     verificationSources: z.array(z.object({
       name: z.string(),
       type: z.enum(['primary', 'government', 'association', 'certification_body']),

@@ -2,8 +2,8 @@
 title: Why factories reject small garment orders
 description: Understanding the economics of a Bangladesh garment factory. Learn why your 50-piece order is a "No" and how to change it to a "Yes."
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-05-21
 cluster: low-moq
 isPillar: false

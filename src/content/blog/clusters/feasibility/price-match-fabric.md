@@ -2,8 +2,8 @@
 title: Why your target price doesn't match your fabric choice
 description: The "math" of garment costing. Learn why that luxury fabric spec is pushing your unit price out of reach.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-05-26
 cluster: feasibility
 isPillar: false

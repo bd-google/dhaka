@@ -22,7 +22,7 @@ website: "https://example.com"
 status: "pending"
 lastCheckedDate: "2026-04-20"
 summary: >
-  Thread Bridge confirmed Bursa Tekstil A.Ş.'s Turkish trade registry
+  Checkloom confirmed Bursa Tekstil A.Ş.'s Turkish trade registry
   listing but could not yet independently confirm the two Bangladeshi
   buyers the company cites as references. Follow-up with those buyers is
   in progress; this entry will be updated once verification is complete.
@@ -31,7 +31,7 @@ findings:
   - "Two cited Bangladeshi buyer references not yet independently confirmed — follow-up in progress."
 
 verificationSources:
-  - name: "Thread Bridge (document review, reference check in progress)"
+  - name: "Checkloom (document review, reference check in progress)"
     type: "primary"
   - name: "Turkish Trade Registry Gazette"
     type: "government"

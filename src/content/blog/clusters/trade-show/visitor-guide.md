@@ -2,8 +2,8 @@
 title: Dhaka Apparel Expo visitor guide for foreign suppliers
 description: Planning your visit to the next big Bangladesh textile event. Transport, hotels, and meeting etiquette for new visitors.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-21
 cluster: trade-show
 isPillar: false

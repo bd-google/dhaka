@@ -2,8 +2,8 @@
 title: Sample to bulk order process for small Bangladesh buyers
 description: Navigating the sampling rounds in Bangladesh. Learn how to move from a tech pack to a gold-seal sample without wasting months.
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-01
 cluster: sample-process
 isPillar: true

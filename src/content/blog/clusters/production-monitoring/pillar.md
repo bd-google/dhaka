@@ -2,8 +2,8 @@
 title: "How to monitor garment production in Bangladesh without visiting"
 description: "Learn the proactive steps to monitor your production lines in Dhaka. Identify bottlenecks and prevent delays before they happen."
 author:
-  name: "ThreadBridge BD"
-  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "Checkloom"
+  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-07-01
 cluster: production-monitoring
 isPillar: true
@@ -34,7 +34,7 @@ If the factory promised an output of 800 pieces per day but the report shows 400
 
 ### Step 3: Independent Inline Inspections
 
-An "inline" inspection happens when about 20% of the order is sewn. This is your early warning system. An independent inspector (like ThreadBridge BD) visits the sewing floor to check the construction. They verify that the workers are following the approved PP sample. Catching a mistake at 20% is a minor fix; catching it at 100% is a disaster.
+An "inline" inspection happens when about 20% of the order is sewn. This is your early warning system. An independent inspector (like Checkloom) visits the sewing floor to check the construction. They verify that the workers are following the approved PP sample. Catching a mistake at 20% is a minor fix; catching it at 100% is a disaster.
 
 ### Conclusion
 
