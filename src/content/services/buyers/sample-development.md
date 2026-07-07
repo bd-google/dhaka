@@ -1,5 +1,6 @@
 ---
 title: Sample Development and Fit Approval
+seoTitle: "Garment Sample Development Service Bangladesh"
 description: Move from tech pack to perfect sample faster. We manage the sample room communication to ensure fit and construction are right the first time.
 type: buyer
 problemStatement: Most brands go through 4 or 5 rounds of samples because the factory doesn't understand the fit requirements or uses the wrong materials.

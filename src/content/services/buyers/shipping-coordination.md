@@ -1,5 +1,6 @@
 ---
 title: Shipping Coordination and Document Review
+seoTitle: "Garment Shipping and Export Documentation Bangladesh"
 description: Avoid customs delays and port fines. We review your commercial invoices, packing lists, and certificates of origin before the goods leave Dhaka.
 type: buyer
 problemStatement: Incorrect HS codes or missing documentation can lead to goods being stuck at customs for weeks, incurring massive storage fees.

@@ -1,5 +1,6 @@
 ---
 title: Ethical Sourcing and Compliance Check
+seoTitle: "Ethical and Compliant Garment Sourcing Bangladesh (BSCI/WRAP)"
 description: Protect your brand's reputation. We verify that your factory follows fair labor practices, maintains safe working conditions, and has no child labor.
 type: buyer
 problemStatement: Consumers today demand transparency. A single report of poor conditions at your supplier can destroy your brand's credibility overnight.

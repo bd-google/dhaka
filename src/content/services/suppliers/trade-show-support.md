@@ -1,5 +1,6 @@
 ---
 title: Trade Show and Event Support
+seoTitle: "Trade Show Support for Textile Suppliers in Bangladesh"
 description: Maximize your ROI at Dhaka textile expos. We handle the logistics, the translation, and the post-show follow-ups so no lead is wasted.
 type: supplier
 problemStatement: Foreign companies often spend $10,000+ on a trade show booth only to lose 90% of their leads because they don't have a local team to follow up.

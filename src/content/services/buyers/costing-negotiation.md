@@ -1,5 +1,6 @@
 ---
 title: Costing Analysis and Price Negotiation
+seoTitle: "Garment Costing and Price Negotiation in Bangladesh"
 description: We help you understand the "true cost" of your garment and negotiate with factories to ensure you aren't paying a "foreigner's premium."
 type: buyer
 problemStatement: New buyers often accept the first price they are given, not realizing the factory has padded the margin for "unseen risks."

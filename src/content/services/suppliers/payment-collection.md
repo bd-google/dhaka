@@ -1,5 +1,6 @@
 ---
 title: Payment Collection and Dispute Resolution
+seoTitle: "Payment Collection Service for Foreign Suppliers in Bangladesh"
 description: We help ensure you get paid on time. Our local presence allows us to follow up on overdue invoices and resolve commercial disputes in person.
 type: supplier
 problemStatement: Chasing payments from a different country is difficult. Emails are ignored, and phone calls are often "disconnected."

@@ -1,6 +1,7 @@
 ---
 title: Compliance & Certification Guidance
-description: Guidance on which certifications (BSCI, WRAP, GOTS, OEKO-TEX, Sedex/SMETA) your factory actually needs for the buyers you're trying to win, and what the process involves.
+seoTitle: "BSCI/WRAP Compliance Certification Support for Bangladesh Factories"
+description: Guidance on which certifications (BSCI, WRAP, GOTS, OEKO-TEX) your factory actually needs for the buyers you're trying to win, and what the process involves.
 type: factory
 problemStatement: Most international buyers won't place an order without a specific certification, but factories often don't know which one applies to them, what it costs, or how long it actually takes.
 bullets:

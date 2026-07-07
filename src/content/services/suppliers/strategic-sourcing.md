@@ -1,5 +1,6 @@
 ---
 title: Strategic Sourcing for Local Raw Materials
+seoTitle: "Local Raw Material Sourcing Partner in Bangladesh"
 description: Need to source fabric or yarn within Bangladesh for your own export projects? We find the most reliable local mills for your needs.
 type: supplier
 problemStatement: Foreign companies often pay too much for local materials because they don't know the "real" factory prices and rely on middlemen.

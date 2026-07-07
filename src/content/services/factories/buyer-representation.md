@@ -1,5 +1,6 @@
 ---
 title: Buyer-Facing Representation
+seoTitle: "Buyer Representation Service for Bangladesh Garment Factories"
 description: A fast, professional, English-language point of contact for your factory, so international buyers get answered before they move to the next supplier.
 type: factory
 problemStatement: Buyers say they choose suppliers who respond fast and communicate clearly in English, not just the lowest price. A slow or unclear reply is often the only reason a good factory loses an order it could have won.

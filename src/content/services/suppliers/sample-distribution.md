@@ -1,5 +1,6 @@
 ---
 title: Fabric and Trim Sample Distribution
+seoTitle: "Fabric Sample Distribution to Bangladesh Garment Factories"
 description: Get your seasonal collections into the hands of factory designers. We manage your sample library and distribution across the Dhaka garment hubs.
 type: supplier
 problemStatement: Shipping small sample swatches from overseas for every request is expensive and too slow for the fast-paced garment industry.

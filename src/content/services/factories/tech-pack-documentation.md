@@ -1,6 +1,7 @@
 ---
 title: Documentation & Tech Pack Support
-description: We turn your factory's specs, patterns, and compliance records into buyer-ready English documentation, so orders don't get rejected over a paperwork misunderstanding.
+seoTitle: "Tech Pack and Documentation Support for Bangladesh Factories"
+description: We turn your factory's specs and compliance records into buyer-ready English documentation, so orders don't get rejected over a paperwork mistake.
 type: factory
 problemStatement: A shipment can meet every quality standard and still get flagged, because the tech pack or compliance file wasn't clear enough in English for the buyer's QC team to sign off on it.
 bullets:

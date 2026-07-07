@@ -1,5 +1,6 @@
 ---
 title: Supply Chain Risk Analysis for Bangladesh
+seoTitle: "Bangladesh Supply Chain Risk Analysis for Foreign Suppliers"
 description: Identify potential disruptions before they hit your sales. We provide local intelligence on port strikes, energy shortages, and political shifts.
 type: supplier
 problemStatement: Foreign suppliers are often blindsided by local events—like a gas shortage or a port strike—that stop their buyers from placing orders.

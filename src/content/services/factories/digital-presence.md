@@ -1,5 +1,6 @@
 ---
 title: Digital Presence & Catalog Support
+seoTitle: "Digital Catalog and Online Presence for Bangladesh Garment Factories"
 description: A professional factory profile, product catalog, and photography, so international buyers who've never heard of your factory can actually find and evaluate it.
 type: factory
 problemStatement: A factory can have strong machinery, good safety records, and solid production capability, and still stay invisible to buyers simply because there's no professional profile, catalog, or photography anywhere online for them to find.

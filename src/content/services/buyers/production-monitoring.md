@@ -1,5 +1,6 @@
 ---
 title: Production Monitoring and Timeline Management
+seoTitle: "Production Monitoring Service for Bangladesh Garment Factories"
 description: Don't wait for a delay to happen. We provide weekly on-site updates to ensure your order is on track for the promised delivery date.
 type: buyer
 problemStatement: Buyers often only find out their order is delayed a few days before the ship date, when it's too late to fix the problem.

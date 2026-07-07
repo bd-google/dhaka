@@ -1,5 +1,6 @@
 ---
 title: Fabric Sourcing and Tech Pack Review
+seoTitle: "Fabric Sourcing and Tech Pack Review Bangladesh"
 description: We help you find the exact fabric you need and review your tech packs to ensure they are production-ready for Bangladesh factories.
 type: buyer
 problemStatement: Many brands send tech packs that are missing critical details, leading to expensive sample errors and production delays.
