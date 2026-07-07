@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://checkloom.com', // update once the custom domain / final pages.dev URL is confirmed
+  site: 'https://dddd.jimaynewage1.workers.dev', // update once the custom domain / final pages.dev URL is confirmed
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
