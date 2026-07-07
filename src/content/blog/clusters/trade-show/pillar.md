@@ -2,8 +2,8 @@
 title: Trade show and factory visit support for foreign suppliers in Bangladesh
 description: Don't let your Dhaka trade show leads go cold. Learn how to maximize your ROI at DTG, Denim Expo, and other Bangladesh textile events.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-20
 cluster: trade-show
 isPillar: true

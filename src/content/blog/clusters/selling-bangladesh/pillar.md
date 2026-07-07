@@ -2,8 +2,8 @@
 title: How foreign fabric or textile machinery suppliers can sell to Bangladesh factories
 description: A practical guide to market entry for foreign suppliers. Learn the procurement cycles and the "unspoken" rules of the Bangladesh garment sector.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-10
 cluster: selling-bangladesh
 isPillar: true

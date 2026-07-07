@@ -1,5 +1,6 @@
 ---
 title: Machinery Installation and Spare Parts Support
+seoTitle: "Sell Textile Machinery to Bangladesh Garment Factories"
 description: Coordinate the technical side of your machinery sales. We manage local technicians and ensure spare parts are available for your clients.
 type: supplier
 problemStatement: Selling machinery is easy; supporting it is hard. Without local support, Bangladesh factories are hesitant to buy expensive foreign equipment.

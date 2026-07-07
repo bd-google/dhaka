@@ -1,5 +1,6 @@
 ---
 title: Quality Inspection (Inline and Pre-Shipment)
+seoTitle: "Garment Quality Inspection Bangladesh (Inline & Pre-Shipment)"
 description: We catch defects before they are packed. Our inspectors use international AQL standards to ensure your bulk order matches your approved sample.
 type: buyer
 problemStatement: Receiving a shipment of thousands of pieces only to find a 10% defect rate is a nightmare that can bankrupt a small brand.

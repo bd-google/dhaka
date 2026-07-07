@@ -1,6 +1,7 @@
 ---
 title: Full End-to-End Sourcing Management
-description: For brands that want a "hands-off" experience. We handle everything from the first factory search to the final container loading.
+seoTitle: "Bangladesh Sourcing Agent for Clothing Brands"
+description: A Bangladesh sourcing agent for brands that want a "hands-off" experience — we handle everything from the first factory search to the final container loading.
 type: buyer
 problemStatement: Managing a production run in a country 5,000 miles away is a full-time job that many founders simply don't have time for.
 bullets:

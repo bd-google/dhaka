@@ -26,14 +26,14 @@ const breadcrumbs = [
 ];
 ---
 
-<BaseLayout title={`${entry.data.title} | Checkloom`} description={entry.data.description}>
+<BaseLayout title={`${entry.data.seoTitle || entry.data.title} | ThreadBridge BD`} description={entry.data.description}>
   <Schema slot="schema" type="BreadcrumbList" data={breadcrumbs} />
   <Schema slot="schema" type="Service" data={{
     name: entry.data.title,
     description: entry.data.description,
     provider: {
       "@type": "LocalBusiness",
-      "name": "Checkloom"
+      "name": "ThreadBridge BD"
     }
   }} />
   {entry.data.faq && <Schema slot="schema" type="FAQ" data={entry.data.faq} />}

@@ -2,8 +2,8 @@
 title: China textile supplier market entry in Bangladesh
 description: How Chinese mills are dominating the Bangladesh fabric market and how you can compete.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-11
 cluster: selling-bangladesh
 isPillar: false

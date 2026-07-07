@@ -1,5 +1,6 @@
 ---
 title: Local Representative and Liaison Service
+seoTitle: "Local Representative Service for Foreign Suppliers in Bangladesh"
 description: Sell your textiles or machinery to Bangladesh factories without the cost of a full office. We act as your boots on the ground.
 type: supplier
 problemStatement: Foreign suppliers struggle to maintain relationships with Bangladesh factories because they aren't physically present to handle daily issues.

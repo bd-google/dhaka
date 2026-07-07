@@ -2,8 +2,8 @@
 title: How to verify a garment factory in Bangladesh before paying
 description: Don't lose your deposit to a middleman. Learn the exact steps to verify a Bangladesh clothing manufacturer's legitimacy and capacity.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-05-15
 cluster: factory-verification
 isPillar: true
@@ -42,7 +42,7 @@ These organizations maintain member directories. You can search for the factory 
 
 The only way to be 100% sure is to have someone physically walk through the factory gates. They need to count the sewing lines, check the safety exits, and verify the machines. A professional inspector will check the "WIP" (Work in Progress) to see if the factory is actually capable of handling your specific fabric and construction.
 
-At Checkloom, we conduct these verifications daily. We don't just look at the machines; we look at the culture. Is the factory clean? Are the workers following safety protocols? Is there evidence of subcontracting? We provide you with a full report, including our own photos and videos, so you can make a decision based on facts, not marketing.
+At ThreadBridge BD, we conduct these verifications daily. We don't just look at the machines; we look at the culture. Is the factory clean? Are the workers following safety protocols? Is there evidence of subcontracting? We provide you with a full report, including our own photos and videos, so you can make a decision based on facts, not marketing.
 
 ### Conclusion: Trust, but verify
 

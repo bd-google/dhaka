@@ -1,5 +1,5 @@
 export const siteMeta = {
-  title: "Checkloom | Bangladesh Textile & Garment Supply Chain Advisory",
+  title: "ThreadBridge BD | Bangladesh Textile & Garment Supply Chain Advisory",
   description: "Independent factory verification and order monitoring for clothing brands, local representation for foreign textile suppliers, and buyer-facing support for Bangladeshi factories.",
   url: "https://checkloom.com",
   image: "/og-image.png",
@@ -12,7 +12,7 @@ export const siteMeta = {
   },
   favicon: "/favicon.svg",
   themeColor: "#0A0A0A",
-  businessName: "Checkloom",
+  businessName: "ThreadBridge BD",
   contact: {
     email: "hello@checkloom.com",
     phone: "+880 1234 567890",

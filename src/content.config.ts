@@ -5,6 +5,7 @@ const services = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/services" }),
   schema: z.object({
     title: z.string(),
+    seoTitle: z.string().optional(), // keyword-first <title> tag; falls back to `title` if unset
     description: z.string(),
     type: z.enum(['buyer', 'supplier', 'factory']),
     problemStatement: z.string(),
@@ -23,7 +24,7 @@ const blog = defineCollection({
     description: z.string(),
     // No personal name/photo required — attribution is to the business, not an individual.
     author: z.object({
-      name: z.string().default('Checkloom'),
+      name: z.string().default('ThreadBridge BD'),
       bio: z.string().optional(),
     }).optional(),
     publishDate: z.coerce.date(),
@@ -109,7 +110,7 @@ const companies = defineCollection({
     summary: z.string(), // unique narrative, written per company — never templated
     findings: z.array(z.string()).optional(),
 
-    // Sources used to verify — mix of primary (Checkloom) and third-party/government/association
+    // Sources used to verify — mix of primary (ThreadBridge BD) and third-party/government/association
     verificationSources: z.array(z.object({
       name: z.string(),
       type: z.enum(['primary', 'government', 'association', 'certification_body']),

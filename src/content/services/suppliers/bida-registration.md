@@ -1,5 +1,6 @@
 ---
 title: BIDA Registration and Liaison Office Setup
+seoTitle: "BIDA Registration Service for Foreign Companies in Bangladesh"
 description: Navigate the Bangladesh Investment Development Authority (BIDA) bureaucracy. We help you set up a legal corporate presence in Dhaka.
 type: supplier
 problemStatement: The legal process for setting up a liaison office in Bangladesh is complex and can take 6-12 months if handled incorrectly.

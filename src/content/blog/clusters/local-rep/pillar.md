@@ -2,8 +2,8 @@
 title: How foreign fabric and textile suppliers can find a local agent in Bangladesh
 description: Entering the Bangladesh textile market requires more than just a brochure. Learn how to find a local representative who can actually close deals.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-05
 cluster: local-rep
 isPillar: true
@@ -37,7 +37,7 @@ Foreign suppliers typically choose between three models for local representation
 
 **2. The Dedicated Liaison Office**: Setting up your own legal entity. This shows the highest commitment but involves significant legal overhead and monthly fixed costs.
 
-**3. The Liaison-as-a-Service (LaaS)**: This is the model we pioneered at Checkloom. You get a professional, dedicated team that acts as your local office for a flat monthly fee (or a hybrid fee/commission). It’s faster to set up than a BIDA-registered office but provides more focus than a generic agent.
+**3. The Liaison-as-a-Service (LaaS)**: This is the model we pioneered at ThreadBridge BD. You get a professional, dedicated team that acts as your local office for a flat monthly fee (or a hybrid fee/commission). It’s faster to set up than a BIDA-registered office but provides more focus than a generic agent.
 
 ### Vetting your local partner
 

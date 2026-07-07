@@ -2,8 +2,8 @@
 title: Virtual office vs physical office for BIDA registration
 description: Legal requirements for your Bangladesh liaison office address. What BIDA expects and what is practical for your business.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-16
 cluster: business-setup
 isPillar: false

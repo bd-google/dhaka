@@ -2,8 +2,8 @@
 title: "Third-party quality inspection for small garment orders in Bangladesh"
 description: "Protect your brand's reputation with independent QC. Learn why AQL standards are essential for orders of 100 to 500 pieces."
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-07-05
 cluster: quality-inspection
 isPillar: true

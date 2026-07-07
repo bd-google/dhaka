@@ -2,8 +2,8 @@
 title: "Garment export documentation mistakes that delay customs"
 description: "Avoid expensive port storage fees. Learn the most common typos and errors in Bangladesh export documents and how to fix them."
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-07-10
 cluster: shipping
 isPillar: true
@@ -35,7 +35,7 @@ Customs officers aren't fashion experts. They need clear, plain descriptions. In
 ### How to avoid these mistakes
 
 1. **The Pre-Draft Review**: Ask the factory to send you "Draft" copies of all shipping documents before they print the final versions or send them to the bank.
-2. **Independent Verification**: Have a local partner (like Checkloom) cross-check the packing list against the actual carton count we saw during the final inspection.
+2. **Independent Verification**: Have a local partner (like ThreadBridge BD) cross-check the packing list against the actual carton count we saw during the final inspection.
 3. **Use a Local Freight Forwarder**: They understand the specific requirements of the Chittagong port and can often catch errors before the goods are even loaded onto the ship.
 
 ### Conclusion

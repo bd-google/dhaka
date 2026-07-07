@@ -2,8 +2,8 @@
 title: "Selling textile machinery in Bangladesh: local support guide"
 description: Why local technical support is your strongest sales tool. Learn how to manage installations and spare parts in the world's most active machinery market.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-25
 cluster: machinery-support
 isPillar: true

@@ -2,8 +2,8 @@
 title: Installation coordination for foreign textile machinery
 description: Moving from the port to the factory floor. How to manage the logistics and engineering of a new machine installation in Bangladesh.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-26
 cluster: machinery-support
 isPillar: false

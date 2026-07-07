@@ -2,8 +2,8 @@
 title: Setting up a liaison office in Bangladesh for a foreign textile company
 description: Moving from exports to a local presence. A step-by-step guide to the BIDA registration process and legal requirements in Dhaka.
 author:
-  name: "Checkloom"
-  bio: "Notes from the Checkloom team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
+  name: "ThreadBridge BD"
+  bio: "Notes from the ThreadBridge BD team, drawn from direct, on-the-ground work across Bangladesh's textile and garment supply chain."
 publishDate: 2025-06-15
 cluster: business-setup
 isPillar: true
@@ -33,7 +33,7 @@ The **Bangladesh Investment Development Authority (BIDA)** is the primary govern
 
 Once your application is submitted, it is reviewed by an inter-ministerial committee. They look for one thing: Will this office help the Bangladesh economy? For textile companies, the answer is almost always "Yes," as you are supporting the country's largest export sector.
 
-You may be called for a hearing to explain why you need the office. Having a local partner (like Checkloom) to help prepare you for this meeting is invaluable.
+You may be called for a hearing to explain why you need the office. Having a local partner (like ThreadBridge BD) to help prepare you for this meeting is invaluable.
 
 ### Post-Registration Compliance
 

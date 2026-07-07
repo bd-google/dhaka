@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteMeta } from '../../data/siteMeta';
 
 const title = `Verified Companies | ${siteMeta.businessName}`;
-const description = `Companies Checkloom has independently verified — factories, suppliers, and buyer-side partners active in Bangladesh's garment and textile industry.`;
+const description = `Companies ThreadBridge BD has independently verified — factories, suppliers, and buyer-side partners active in Bangladesh's garment and textile industry.`;
 
 const companies = (await getCollection('companies')).sort(
   (a, b) => new Date(b.data.lastCheckedDate).getTime() - new Date(a.data.lastCheckedDate).getTime()
@@ -23,7 +23,7 @@ const statusLabel: Record<string, string> = {
     <div class="container" style="max-width: 900px;">
       <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 16px;">Verified Companies</h1>
       <p style="margin-bottom: 40px;">
-        Every company below has been checked by Checkloom against government
+        Every company below has been checked by ThreadBridge BD against government
         registries, industry associations, or on-the-ground factory visits.
       </p>
 

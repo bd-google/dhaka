@@ -1,5 +1,6 @@
 ---
 title: Low MOQ Knitwear Sourcing (100-300 pieces)
+seoTitle: "Low MOQ Knitwear Manufacturer in Bangladesh"
 description: Most Bangladesh factories want 5,000 pieces. We find the reliable small-run units that accept orders as low as 100 pieces per style.
 type: buyer
 problemStatement: Small brands are often rejected by large factories because their order volume doesn't meet the "minimum profitable run."

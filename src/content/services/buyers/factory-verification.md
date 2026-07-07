@@ -1,5 +1,6 @@
 ---
 title: Factory Verification and Supplier Audit
+seoTitle: "Bangladesh Garment Factory Verification Service"
 description: Stop working with middlemen who claim to be factories. We visit the site to verify production capacity and legal licenses in Bangladesh.
 type: buyer
 problemStatement: Many buyers pay deposits to "factories" only to find out later they are talking to a middleman with no machines.

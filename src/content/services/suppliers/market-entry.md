@@ -1,5 +1,6 @@
 ---
 title: Market Entry and Buyer Identification
+seoTitle: "Bangladesh Market Entry for Foreign Textile Suppliers"
 description: We identify the specific Bangladesh factories that need your products. No generic lists—just direct introductions to decision-makers.
 type: supplier
 problemStatement: Most foreign suppliers waste time sending emails to generic "info@" addresses that are never checked by the right people.
