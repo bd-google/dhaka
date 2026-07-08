@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteMeta } from '../data/siteMeta';
+
+const title = `Terms of Service | ${siteMeta.businessName}`;
+const description = `The terms that govern use of ${siteMeta.businessName}'s website and services.`;
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <section style="padding: 80px 0;">
+    <div class="container" style="max-width: 750px;">
+      <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 16px;">Terms of Service</h1>
+      <p style="color: var(--accent-color); font-size: 0.9rem; margin-bottom: 40px;">
+        ⚠ Draft structure only — not reviewed by a lawyer. Replace each section
+        below with real, legally-reviewed content before removing noindex and
+        publishing this page.
+      </p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">1. Services described</h2>
+      <p>[Placeholder — scope of factory verification, sourcing, and market-entry services.]</p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">2. What verification does and doesn't guarantee</h2>
+      <p>[Placeholder — this matters a lot for a verification business: clearly state the limits of what "verified" means, to manage liability and expectations.]</p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">3. Payment and refunds</h2>
+      <p>[Placeholder]</p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">4. Liability limits</h2>
+      <p>[Placeholder]</p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">5. Governing law</h2>
+      <p>[Placeholder — likely Bangladesh law, but confirm with a lawyer.]</p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">6. Contact</h2>
+      <p>Questions about these terms: <a href={`mailto:${siteMeta.contact.email}`}>{siteMeta.contact.email}</a></p>
+    </div>
+  </section>
+</BaseLayout>
