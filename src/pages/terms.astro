@@ -3,36 +3,101 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { siteMeta } from '../data/siteMeta';
 
 const title = `Terms of Service | ${siteMeta.businessName}`;
-const description = `The terms that govern use of ${siteMeta.businessName}'s website and services.`;
+const description = `The terms that govern use of ${siteMeta.businessName}'s website and verification/sourcing services.`;
+const lastUpdated = "8 July 2026";
 ---
 
 <BaseLayout title={title} description={description} noindex={true}>
   <section style="padding: 80px 0;">
     <div class="container" style="max-width: 750px;">
       <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 16px;">Terms of Service</h1>
-      <p style="color: var(--accent-color); font-size: 0.9rem; margin-bottom: 40px;">
-        ⚠ Draft structure only — not reviewed by a lawyer. Replace each section
-        below with real, legally-reviewed content before removing noindex and
-        publishing this page.
+
+      <div style="border: 1.5px solid var(--accent-color); border-radius: 6px; padding: 16px 20px; margin-bottom: 40px;">
+        <p style="color: var(--accent-color); font-weight: 600; margin-bottom: 8px;">⚠ Informed draft — not a substitute for a lawyer</p>
+        <p style="font-size: 0.9rem; margin-bottom: 0;">
+          Section 2 (what "Verified" means) is the most important part of this document —
+          it's what limits {siteMeta.businessName}'s liability if a company we verified later
+          turns out to have misrepresented something outside the scope of the checks we ran.
+          Have a Bangladeshi lawyer review the exact wording before publishing; badly-worded
+          liability limits can fail to hold up.
+        </p>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--text-secondary);">Last updated: {lastUpdated}</p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">1. What we do</h2>
+      <p>
+        {siteMeta.businessName} provides independent factory verification, sourcing support,
+        and market-entry services connecting foreign buyers, foreign suppliers, and
+        Bangladeshi garment/textile factories. Full service scope is described on our
+        <a href="/services">Services</a> pages.
       </p>
 
-      <h2 style="font-size: 1.2rem; margin-top: 30px;">1. Services described</h2>
-      <p>[Placeholder — scope of factory verification, sourcing, and market-entry services.]</p>
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">2. What "Verified" means — and what it doesn't guarantee</h2>
+      <p>
+        A company can look completely legitimate online for very little money or effort —
+        a professional-looking website today can be built cheaply, in an hour, including
+        with AI tools, without any physical factory, licence, or business registration
+        behind it. Our verification exists specifically to check for that gap between how
+        a company presents itself and what's actually on the ground.
+      </p>
+      <p><strong>When we mark a company "Verified," it means, as of the date stated on that page:</strong></p>
+      <ul>
+        <li>We confirmed the specific facts listed on that company's page — e.g. trade license number, BIN, RJSC registration, or a physical visit to the stated factory address</li>
+        <li>We checked those facts against the specific government registries, industry associations, or on-site observations listed as "verification sources" on that page</li>
+      </ul>
+      <p><strong>"Verified" does NOT mean, and {siteMeta.businessName} does not guarantee:</strong></p>
+      <ul>
+        <li>That the company will behave honestly in a specific future transaction — verification confirms who they are, not what they will do</li>
+        <li>Ongoing accuracy after the "last checked" date — companies change ownership, close, or lose certifications after we check them</li>
+        <li>Product quality, delivery timelines, or commercial terms — those are between the buyer/supplier and the factory directly, unless a separate service (e.g. quality inspection) was specifically engaged for that order</li>
+        <li>Financial solvency or creditworthiness of the verified company</li>
+        <li>That every fact about the company (beyond what's explicitly listed on its verification page) is accurate</li>
+      </ul>
+      <p>
+        [Placeholder — a lawyer should turn the above into a formal limitation-of-liability
+        clause with a specific liability cap, e.g. capped at fees paid for the specific
+        verification.]
+      </p>
 
-      <h2 style="font-size: 1.2rem; margin-top: 30px;">2. What verification does and doesn't guarantee</h2>
-      <p>[Placeholder — this matters a lot for a verification business: clearly state the limits of what "verified" means, to manage liability and expectations.]</p>
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">3. Client responsibilities</h2>
+      <p>
+        [Placeholder — e.g. clients should still conduct their own due diligence for
+        high-value orders, use standard trade safeguards (LCs, escrow, sample approval)
+        regardless of verification status, and report any discrepancy they find so we can
+        update a company's record.]
+      </p>
 
-      <h2 style="font-size: 1.2rem; margin-top: 30px;">3. Payment and refunds</h2>
-      <p>[Placeholder]</p>
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">4. Payment and refunds</h2>
+      <p>[Placeholder — payment terms, currency, and refund/cancellation policy per service.]</p>
 
-      <h2 style="font-size: 1.2rem; margin-top: 30px;">4. Liability limits</h2>
-      <p>[Placeholder]</p>
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">5. Intellectual property</h2>
+      <p>
+        Verification reports, written content, and this website belong to {siteMeta.businessName}
+        unless otherwise agreed in writing.
+      </p>
 
-      <h2 style="font-size: 1.2rem; margin-top: 30px;">5. Governing law</h2>
-      <p>[Placeholder — likely Bangladesh law, but confirm with a lawyer.]</p>
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">6. Limitation of liability</h2>
+      <p>
+        [Placeholder — a lawyer should set an explicit cap here (commonly: fees paid for
+        the specific service in question), and confirm this is enforceable under
+        Bangladesh law for the jurisdictions your clients are in.]
+      </p>
 
-      <h2 style="font-size: 1.2rem; margin-top: 30px;">6. Contact</h2>
-      <p>Questions about these terms: <a href={`mailto:${siteMeta.contact.email}`}>{siteMeta.contact.email}</a></p>
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">7. Governing law and disputes</h2>
+      <p>
+        [Placeholder — likely the laws of Bangladesh, with a named venue/arbitration body
+        for disputes; confirm with a lawyer, especially for cross-border clients.]
+      </p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">8. Changes to these terms</h2>
+      <p>We'll update the "last updated" date above when these terms change materially.</p>
+
+      <h2 style="font-size: 1.2rem; margin-top: 30px;">9. Contact</h2>
+      <p>
+        Questions about these terms:
+        <a href={`mailto:${siteMeta.contact.email}`}>{siteMeta.contact.email}</a>
+      </p>
     </div>
   </section>
 </BaseLayout>
