@@ -7,6 +7,7 @@ const pillarPosts = allPosts.filter(p => p.data.isPillar).sort((a, b) => b.data.
 
 const buyerPillars = pillarPosts.filter(p => ['factory-verification', 'low-moq', 'feasibility', 'sample-process', 'production-monitoring', 'quality-inspection', 'shipping', 'first-time-buyer', 'manufacturing-cost', 'knitwear-sourcing', 'compliance-certification', 'sustainable-sourcing', 'tech-pack', 'denim-sourcing'].includes(p.data.cluster));
 const supplierPillars = pillarPosts.filter(p => ['local-rep', 'selling-bangladesh', 'business-setup', 'trade-show', 'machinery-support'].includes(p.data.cluster));
+const factoryPillars = pillarPosts.filter(p => ['factory-buyer-access'].includes(p.data.cluster));
 
 function getSlug(post: any) {
   let slug = post.id.split('/').pop()?.replace('.md', '');
@@ -42,6 +43,19 @@ function getSlug(post: any) {
       <h2 style="font-size: 2rem; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">For Textile & Machinery Suppliers</h2>
       <div class="grid grid-2-tablet grid-3-desktop">
         {supplierPillars.map(post => (
+          <a href={`/blog/${getSlug(post)}`} class="blog-card">
+            <span class="date">{post.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <span class="read-more">Read Guide →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+    <section style="margin-bottom: 80px;">
+      <h2 style="font-size: 2rem; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">For Bangladeshi Factories</h2>
+      <div class="grid grid-2-tablet grid-3-desktop">
+        {factoryPillars.map(post => (
           <a href={`/blog/${getSlug(post)}`} class="blog-card">
             <span class="date">{post.data.publishDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
             <h3>{post.data.title}</h3>
