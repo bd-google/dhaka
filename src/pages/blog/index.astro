@@ -7,7 +7,7 @@ const pillarPosts = allPosts.filter(p => p.data.isPillar).sort((a, b) => b.data.
 
 const buyerPillars = pillarPosts.filter(p => ['factory-verification', 'low-moq', 'feasibility', 'sample-process', 'production-monitoring', 'quality-inspection', 'shipping', 'first-time-buyer', 'manufacturing-cost', 'knitwear-sourcing', 'compliance-certification', 'sustainable-sourcing', 'tech-pack', 'denim-sourcing', 'activewear-sourcing', 'kidswear-sourcing', 'woven-sourcing', 'sweater-sourcing', 'lingerie-sourcing', 'workwear-sourcing', 'home-textile-sourcing'].includes(p.data.cluster));
 const supplierPillars = pillarPosts.filter(p => ['local-rep', 'selling-bangladesh', 'business-setup', 'trade-show', 'machinery-support', 'component-suppliers', 'fabric-yarn-gap', 'payment-collection', 'risk-analysis', 'sample-distribution', 'strategic-sourcing', 'training-coordination'].includes(p.data.cluster));
-const factoryPillars = pillarPosts.filter(p => ['factory-buyer-access'].includes(p.data.cluster));
+const factoryPillars = pillarPosts.filter(p => ['factory-buyer-access', 'factory-digital-presence'].includes(p.data.cluster));
 
 function getSlug(post: any) {
   let slug = post.id.split('/').pop()?.replace('.md', '');
