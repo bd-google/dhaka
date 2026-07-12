@@ -156,5 +156,24 @@ const associationRows = [
     <div style="margin-top: 40px;">
       <a href="/contact" class="btn btn-primary">Ask us about this company</a>
     </div>
+
+    {c.status === 'verified' && (
+      <section style="margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border-color);">
+        <h2 style="font-size: 1.1rem; margin-bottom: 8px;">Are you {name}?</h2>
+        <p style="margin-bottom: 16px;">
+          Add this verification badge to your own website — it links back to this page so buyers and suppliers can confirm your status directly with us, not just take your word for it.
+        </p>
+
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1.5px solid var(--green-color); border-radius: 6px; background: var(--card-bg); margin-bottom: 16px;">
+          <span class="stamp stamp-verified">Verified</span>
+          <span style="font-size: 0.85rem;">by ThreadBridge BD</span>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">Copy this code and paste it into your website:</p>
+        <pre style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; padding: 16px; overflow-x: auto; font-size: 0.8rem; font-family: var(--font-mono);"><code>{`<a href="${Astro.url.toString()}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1.5px solid #2E7D4F;border-radius:6px;background:#141311;color:#F2F0EA;text-decoration:none;font-family:sans-serif;font-size:14px;">
+  ✅ Verified by ThreadBridge BD
+</a>`}</code></pre>
+      </section>
+    )}
   </article>
 </BaseLayout>
