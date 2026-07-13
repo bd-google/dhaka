@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteMeta } from '../data/siteMeta';
+
+const title = `Garment & Textile Sourcing Glossary | ${siteMeta.businessName}`;
+const description = "Plain-language definitions of the terms buyers, suppliers, and factories actually use in Bangladesh garment sourcing — CMT, MOQ, FOB, LC, GSM, AQL, and more.";
+
+const terms = [
+  {
+    group: 'Pricing & Trade Terms',
+    items: [
+      { term: 'CMT (Cut, Make, Trim)', def: 'The labor and construction cost of turning fabric into a finished garment — one of the three main components of a per-piece price, alongside fabric and trims. See our <a href="/blog/manufacturing-cost">manufacturing cost breakdown</a>.' },
+      { term: 'FOB (Free On Board)', def: 'A pricing and shipping term meaning the seller\'s price covers the goods until they\'re loaded onto the shipping vessel at the port of origin — the buyer takes responsibility (and cost) for freight and insurance from that point.' },
+      { term: 'EXW (Ex Works)', def: 'A pricing term where the buyer takes responsibility for goods starting at the factory door — the buyer arranges and pays for all transport, export clearance, and freight.' },
+      { term: 'CIF (Cost, Insurance, Freight)', def: 'A pricing term where the seller\'s price includes shipping and insurance to the destination port, unlike FOB.' },
+      { term: 'Landed cost', def: 'The true total cost of a product once it actually arrives at your warehouse — FOB/CIF price plus freight, duty, insurance, and handling. Often meaningfully higher than the quoted factory price alone.' },
+      { term: 'Chargeback', def: 'A deduction a buyer applies to payment owed, usually citing a quality or compliance issue — see our piece on <a href="/blog/discount-after-shipment">post-shipment discount pressure</a> for how this is sometimes used unfairly.' },
+    ],
+  },
+  {
+    group: 'Orders, Sampling & Production',
+    items: [
+      { term: 'MOQ (Minimum Order Quantity)', def: 'The smallest quantity, usually per style per color, a factory will accept for an order. See our <a href="/blog/low-moq">low-MOQ piece</a> for realistic ranges by category.' },
+      { term: 'PP Sample (Pre-Production Sample)', def: 'The reference sample a buyer approves before bulk production begins — the standard every unit in the bulk run should match. See our piece on <a href="/blog/pp-sample-bait-switch">bulk production not matching the approved sample</a>.' },
+      { term: 'Tech Pack', def: 'The complete technical blueprint for a garment — sketches, measurements, grading, construction detail, and bill of materials. See our <a href="/blog/tech-pack">full tech pack guide</a>.' },
+      { term: 'BOM (Bill of Materials)', def: 'The itemized list of every fabric, trim, and component used in a garment, usually included as part of a complete tech pack.' },
+      { term: 'AQL (Acceptable Quality Limit)', def: 'A statistical standard used in quality inspection defining how many defects in a sampled batch are acceptable before the whole shipment is rejected.' },
+      { term: 'Lead time', def: 'The full calendar time from order confirmation to shipment-ready goods — commonly confused with just "production time," which is only one part of it. See our piece on <a href="/blog/lead-time-miscalculation">lead time miscalculation</a>.' },
+      { term: 'Composite factory', def: 'A factory that handles multiple stages in-house — for example, fabric knitting/dyeing through cutting and sewing — rather than outsourcing each stage separately.' },
+    ],
+  },
+  {
+    group: 'Fabric & Construction',
+    items: [
+      { term: 'GSM (Grams per Square Meter)', def: 'The standard measure of fabric weight/density — higher GSM generally means heavier, thicker fabric.' },
+      { term: 'Gauge', def: 'The needle density on a knitting machine, used for sweaters and fine knitwear — counterintuitively, a lower gauge number means a thicker, coarser knit. See our <a href="/blog/sweater-sourcing">sweater sourcing piece</a>.' },
+      { term: 'Jacquard', def: 'A knitting or weaving technique that produces intricate, multi-color patterns directly in the fabric structure, rather than printing on top of it afterward.' },
+      { term: 'Colorfastness', def: 'How well a fabric\'s color holds up to washing, light, and rubbing without bleeding or fading — tested separately from visual inspection. See our piece on <a href="/blog/colorfastness-wash-failure">wash-test failures</a>.' },
+      { term: 'Shade band / lab dip', def: 'A physical color reference approved before bulk dyeing to prevent shade variation across a production run. See our piece on <a href="/blog/fabric-shade-variation">fabric shade variation</a>.' },
+    ],
+  },
+  {
+    group: 'Registration & Legal (Bangladesh-specific)',
+    items: [
+      { term: 'BIN (Business Identification Number)', def: 'Bangladesh\'s tax registration number, issued by the National Board of Revenue (NBR) — one of the core documents to verify a company is real.' },
+      { term: 'RJSC', def: 'The Registrar of Joint Stock Companies and Firms — the Bangladeshi government body that officially registers companies; an RJSC registration number is independently checkable.' },
+      { term: 'BIDA', def: 'The Bangladesh Investment Development Authority — handles foreign investment registration, including liaison and branch office approval. See our <a href="/blog/foreign-entry-success">market entry structures piece</a>.' },
+      { term: 'BEPZA / EPZ', def: 'The Bangladesh Export Processing Zones Authority, and the Export Processing Zones it regulates — offers a one-stop regulatory service that can bypass some standard multi-agency bureaucracy.' },
+      { term: 'BGMEA / BKMEA', def: 'Bangladesh\'s two main garment industry associations — BGMEA for woven-focused exporters, BKMEA for knitwear — membership is independently checkable and a common buyer due-diligence step.' },
+    ],
+  },
+  {
+    group: 'Compliance & Certification',
+    items: [
+      { term: 'BSCI', def: 'A social compliance monitoring framework (not a strict certification) common with EU buyers, scoring factories A–E. See our <a href="/blog/compliance-certification">full BSCI/WRAP/Sedex breakdown</a>.' },
+      { term: 'WRAP', def: 'A genuine factory-level certification for the sewn-products sector, most associated with US buyers.' },
+      { term: 'Sedex / SMETA', def: 'A UK-favored audit methodology (not a pass/fail certificate) scored against the ETI base code, in 2-pillar or 4-pillar depth.' },
+      { term: 'GOTS (Global Organic Textile Standard)', def: 'Certifies organic fiber origin and ethical/ecological production end-to-end — the certificate that legally allows an "organic" claim. See our <a href="/blog/sustainable-sourcing">sustainable sourcing piece</a>.' },
+      { term: 'OEKO-TEX', def: 'Tests a finished garment for harmful substances — a chemical-safety certification, not an organic-origin one. Often confused with GOTS.' },
+      { term: 'GRS (Global Recycled Standard)', def: 'Certifies recycled material content and its chain of custody.' },
+      { term: 'Scope Certificate (SC) vs. Transaction Certificate (TC)', def: 'An SC certifies a facility is approved to handle certified goods; a TC certifies a specific batch/shipment actually is certified material. A factory\'s SC does not automatically mean every order is certified — see our <a href="/blog/factory-growth">certification chain-of-custody piece</a>.' },
+      { term: 'UFLPA', def: 'A US law presuming any goods with Xinjiang-region material are forced-labor product — based on raw material origin, not where the garment was sewn. See our <a href="/blog/uflpa-cotton-traceability">full UFLPA piece</a>.' },
+    ],
+  },
+  {
+    group: 'Payment & Finance',
+    items: [
+      { term: 'LC (Letter of Credit)', def: 'A bank-guaranteed payment instrument commonly used in international trade — the issuing bank commits to pay once shipping documents are presented correctly. See our <a href="/blog/payment-collection">LC payment delay piece</a>.' },
+      { term: 'Confirmed LC', def: 'An LC where a second (often international) bank adds its own payment guarantee on top of the issuing bank\'s — protects against the issuing bank\'s own liquidity risk.' },
+      { term: 'Back-to-back LC', def: 'A second LC a factory opens (using a buyer\'s LC to them as collateral) to pay their own raw material suppliers.' },
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section style="padding: 80px 0;">
+    <div class="container" style="max-width: 850px;">
+      <h1 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 16px;">Garment & Textile Sourcing Glossary</h1>
+      <p style="margin-bottom: 50px;">
+        The terms buyers, suppliers, and factories actually use when sourcing from Bangladesh — explained plainly, with links to the fuller pieces where it helps to go deeper.
+      </p>
+
+      {terms.map(group => (
+        <div style="margin-bottom: 50px;">
+          <h2 style="font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">{group.group}</h2>
+          {group.items.map(item => (
+            <div style="margin-bottom: 24px;">
+              <h3 style="font-size: 1rem; margin-bottom: 6px; color: var(--accent-color);">{item.term}</h3>
+              <p set:html={item.def} />
+            </div>
+          ))}
+        </div>
+      ))}
+
+      <div style="margin-top: 40px; padding: 30px; border: 1px solid var(--border-color); border-radius: 10px;">
+        <p style="margin-bottom: 16px;">Don't see a term you're looking for?</p>
+        <a href="/contact" class="btn btn-primary">Ask Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

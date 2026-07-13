@@ -21,7 +21,19 @@ const description = "Get a quote for factory verification, sourcing, or local re
         <div style="margin-bottom: 40px;">
           <h2 style="font-size: 1.25rem; margin-bottom: 16px;">Direct Contact</h2>
           <p style="margin-bottom: 8px;"><a href={`mailto:${siteMeta.contact.email}`} style="font-size: 1.1rem; font-weight: 600;">{siteMeta.contact.email}</a></p>
-          <p><a href={`tel:${siteMeta.contact.phone}`} style="font-size: 1.1rem; font-weight: 600;">{siteMeta.contact.phone}</a></p>
+          <p style="margin-bottom: 8px;"><a href={`tel:${siteMeta.contact.phone}`} style="font-size: 1.1rem; font-weight: 600;">{siteMeta.contact.phone}</a></p>
+          <a href={`https://wa.me/${siteMeta.contact.phone.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 8px;">
+            Chat on WhatsApp
+          </a>
+        </div>
+
+        <div style="margin-bottom: 40px;">
+          <h2 style="font-size: 1.25rem; margin-bottom: 16px;">What happens after you reach out</h2>
+          <ol style="padding-left: 20px;">
+            <li style="margin-bottom: 10px;"><strong>We reply within 24 hours</strong> (Sunday–Thursday) to understand what you need.</li>
+            <li style="margin-bottom: 10px;"><strong>We scope the work</strong> — the specific service, timeline, and cost, confirmed before anything starts.</li>
+            <li style="margin-bottom: 10px;"><strong>We get to work</strong> — on the ground in Bangladesh, with regular updates as we go.</li>
+          </ol>
         </div>
 
         <div>
